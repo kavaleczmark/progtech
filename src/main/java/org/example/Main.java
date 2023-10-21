@@ -9,7 +9,7 @@ public class Main {
         System.out.println("Üdvözlünk a Wumpus játékban!\nÍrd be a felhasználóneved: ");
         Scanner sc=new Scanner(System.in);
         String userName= sc.nextLine();
-        System.out.println("Köszönjük! További jó szórakozást!");
+        System.out.println("Köszönjük! További jó szórakozást "+userName+"!");
         mainMenu();
     }
     private static void mainMenu() {
@@ -44,7 +44,7 @@ public class Main {
             case 3:mainMenu();
             default:{
                 System.out.println("#cominsoon or #wrongcommand");
-                mapEditor();
+                game();
             }
         }
     }
@@ -71,6 +71,5 @@ public class Main {
     }
     public static void main(String[] args) {
         getUserName();
-
     }
 }
