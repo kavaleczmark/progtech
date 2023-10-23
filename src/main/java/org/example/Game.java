@@ -17,7 +17,7 @@ public class Game {
     private void getUserName() {
         System.out.println("Üdvözlünk a Wumpus játékban!\nÍrd be a felhasználóneved: ");
         userName = userInput.getUserInputAsString();
-        System.out.println("Köszönjük! További jó szórakozást!");
+        System.out.println("Köszönjük! További jó szórakozást "+userName+"!");
     }
 
     private void startMainMenu() {
@@ -77,9 +77,10 @@ public class Game {
             }
         }
     }
+
     private void createMap() {
         System.out.println("Írja be a pálya méretét (NxN):");
-        map=new Map(userInput.getUserInputAsInt());
+        map = new Map(userInput.getUserInputAsInt());
         map.printMap();
     }
 
