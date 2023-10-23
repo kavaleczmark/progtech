@@ -15,8 +15,7 @@ public class Map {
         } else {
             this.size = size;
         }
-
-        this.map = new GameObject[size][size];
+        this.map = new GameObject[this.size][this.size];
         initMap();
     }
 
@@ -28,26 +27,27 @@ public class Map {
     private void fillEmpty() {
         for (int i = 0; i < size; i++) {
             for (int j = 0; j < size; j++) {
-                map[i][j]=new GameObject();
+                map[i][j] = new GameObject();
             }
         }
     }
 
     public void printMap() {
-        for (int i = 0; i <size; i++) {
+        for (int i = 0; i < size; i++) {
             for (int j = 0; j < size; j++) {
-                System.out.print(map[i][j].getName()+" \t");
+                System.out.print(map[i][j].getName() + " \t");
             }
             System.out.println();
             System.out.println();
         }
     }
+
     private void loadWall() {
         for (int i = 0; i < size; i++) {
-            map[0][i]=new Wall();
-            map[size-1][i]=new Wall();
-            map[i][0]=new Wall();
-            map[i][size-1]=new Wall();
+            map[0][i] = new Wall();
+            map[size - 1][i] = new Wall();
+            map[i][0] = new Wall();
+            map[i][size - 1] = new Wall();
         }
     }
 }

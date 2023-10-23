@@ -69,12 +69,18 @@ public class Game {
 
     private void handleMapEditorInput(int input) {
         switch (input) {
+            case 1 -> createMap();
             case 4 -> startMainMenu();
             default -> {
                 System.out.println("#cominsoon or #wrongcommand");
                 mapEditor();
             }
         }
+    }
+    private void createMap() {
+        System.out.println("Írja be a pálya méretét (NxN):");
+        map=new Map(userInput.getUserInputAsInt());
+        map.printMap();
     }
 
     private void exitGame() {

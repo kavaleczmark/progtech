@@ -1,6 +1,7 @@
 package org.example.objects;
 
-public class Pit extends GameObject{
+public class Pit extends GameObject {
+
     @Override
     public String getName() {
         return "PIT";
