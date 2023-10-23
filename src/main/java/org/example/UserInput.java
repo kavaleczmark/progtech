@@ -12,7 +12,7 @@ public class UserInput {
     public String getUserInputAsString() {
         return scanner.nextLine();
     }
-    g
+
     public int getUserInputAsInt() {
         return scanner.nextInt();
     }
