@@ -4,9 +4,11 @@ public class Game {
     private UserInput userInput;
     private String userName;
     private Map map;
+    private MapEditor mapEdit;
 
     public Game() {
         userInput = new UserInput();
+        mapEdit = new MapEditor();
     }
 
     public void startGame() {
@@ -17,10 +19,10 @@ public class Game {
     private void getUserName() {
         System.out.println("Üdvözlünk a Wumpus játékban!\nÍrd be a felhasználóneved: ");
         userName = userInput.getUserInputAsString();
-        System.out.println("Köszönjük! További jó szórakozást "+userName+"!");
+        System.out.println("Köszönjük! További jó szórakozást " + userName + "!");
     }
 
-    private void startMainMenu() {
+    void startMainMenu() {
         System.out.println("-------FŐMENÜ-------");
         System.out.println("1. JÁTÉK");
         System.out.println("2. PÁLYASZERKESZTÉS");
@@ -31,7 +33,7 @@ public class Game {
     private void handleMainMenuInput(int input) {
         switch (input) {
             case 1 -> game();
-            case 2 -> mapEditor();
+            case 2 -> mapEdit.mapEditor();
             case 3 -> exitGame();
             default -> {
                 System.out.println("NEM LÉTEZIK ILYEN PARANCS");
@@ -52,37 +54,10 @@ public class Game {
         switch (input) {
             case 3 -> startMainMenu();
             default -> {
-                System.out.println("#cominsoon or #wrongcommand");
+                System.out.println("#comingsoon or #wrongcommand");
                 game();
             }
         }
-    }
-
-    private void mapEditor() {
-        System.out.println("-------PÁLYASZERKESZTŐ-------");
-        System.out.println("1. PÁLYA LÉTREHOZÁSA    #comingsoon");
-        System.out.println("2. PÁLYA BETÖLTÉSE    #comingsoon");
-        System.out.println("3. PÁLYA MENTÉSE    #comingsoon");
-        System.out.println("4. VISSZA A FŐMENÜBE");
-        handleMapEditorInput(userInput.getUserInputAsInt());
-        map.counterOfObject(ObjectTypes.WALL);
-    }
-
-    private void handleMapEditorInput(int input) {
-        switch (input) {
-            case 1 -> createMap();
-            case 4 -> startMainMenu();
-            default -> {
-                System.out.println("#cominsoon or #wrongcommand");
-                mapEditor();
-            }
-        }
-    }
-
-    private void createMap() {
-        System.out.println("Írja be a pálya méretét (NxN):");
-        map = new Map(userInput.getUserInputAsInt());
-        map.printMap();
     }
 
     private void exitGame() {

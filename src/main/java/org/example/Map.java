@@ -59,7 +59,6 @@ public class Map {
                 }
             }
         }
-        System.out.println(counter+" db fal van.");
         return counter;
     }
 }
