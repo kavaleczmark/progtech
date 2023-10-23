@@ -2,33 +2,39 @@ package org.example;
 
 public class Game {
     private UserInput userInput;
+    private String userName;
 
     public Game() {
-        userInput=new UserInput();
+        userInput = new UserInput();
     }
+
     public void startGame() {
         getUserName();
+        startMainMenu();
     }
 
     private void getUserName() {
         System.out.println("Üdvözlünk a Wumpus játékban!\nÍrd be a felhasználóneved: ");
-        userInput.getUserInputAsString();
+        userName = userInput.getUserInputAsString();
         System.out.println("Köszönjük! További jó szórakozást!");
-        mainMenu();
     }
 
-    private void mainMenu() {
+    private void startMainMenu() {
         System.out.println("-------FŐMENÜ-------");
         System.out.println("1. JÁTÉK");
         System.out.println("2. PÁLYASZERKESZTÉS");
         System.out.println("3. KILÉPÉS");
-        switch (userInput.getUserInputAsInt()) {
+        handleMainMenuInput(userInput.getUserInputAsInt());
+    }
+
+    private void handleMainMenuInput(int input) {
+        switch (input) {
             case 1 -> game();
             case 2 -> mapEditor();
             case 3 -> exitGame();
             default -> {
                 System.out.println("NEM LÉTEZIK ILYEN PARANCS");
-                mainMenu();
+                startMainMenu();
             }
         }
     }
@@ -38,8 +44,12 @@ public class Game {
         System.out.println("1. PÁLYA BETÖLTÉSE JÁTÉKBÓL");
         System.out.println("2. PÁLYA BETÖLTÉSE ADATBÁZISBÓL");
         System.out.println("3. VISSZA A FŐMENÜBE");
-        switch (userInput.getUserInputAsInt()) {
-            case 3 -> mainMenu();
+        handleGameInput(userInput.getUserInputAsInt());
+    }
+
+    private void handleGameInput(int input) {
+        switch (input) {
+            case 3 -> startMainMenu();
             default -> {
                 System.out.println("#cominsoon or #wrongcommand");
                 game();
@@ -53,8 +63,12 @@ public class Game {
         System.out.println("2. PÁLYA BETÖLTÉSE    #comingsoon");
         System.out.println("3. PÁLYA MENTÉSE    #comingsoon");
         System.out.println("4. VISSZA A FŐMENÜBE");
-        switch (userInput.getUserInputAsInt()) {
-            case 4 -> mainMenu();
+        handleMapEditorInput(userInput.getUserInputAsInt());
+    }
+
+    private void handleMapEditorInput(int input) {
+        switch (input) {
+            case 4 -> startMainMenu();
             default -> {
                 System.out.println("#cominsoon or #wrongcommand");
                 mapEditor();
