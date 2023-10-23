@@ -1,9 +1,13 @@
 package org.example.objects;
 
-public class GameObject {
+import org.example.ObjectTypes;
 
+public class GameObject {
     public String getName() {
         return "\t";
     }
 
+    public ObjectTypes getObJectTypes() {
+        return ObjectTypes.EMPTY;
+    }
 }

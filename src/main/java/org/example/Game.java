@@ -65,6 +65,7 @@ public class Game {
         System.out.println("3. PÁLYA MENTÉSE    #comingsoon");
         System.out.println("4. VISSZA A FŐMENÜBE");
         handleMapEditorInput(userInput.getUserInputAsInt());
+        map.counterOfObject(ObjectTypes.WALL);
     }
 
     private void handleMapEditorInput(int input) {
