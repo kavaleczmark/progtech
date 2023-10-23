@@ -3,6 +3,7 @@ package org.example;
 public class Game {
     private UserInput userInput;
     private String userName;
+    private Map map;
 
     public Game() {
         userInput = new UserInput();
