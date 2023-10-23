@@ -1,5 +1,7 @@
 package org.example;
 
+import org.example.objects.GameObject;
+
 public class Map {
 
     private GameObject[][] map;
