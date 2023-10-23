@@ -23,16 +23,10 @@ public class Game {
         System.out.println("2. PÁLYASZERKESZTÉS");
         System.out.println("3. KILÉPÉS");
         switch (userInput.getUserInputAsInt()) {
-            case 1:
-                game();
-                break;
-            case 2:
-                mapEditor();
-                break;
-            case 3:
-                exitGame();
-                break;
-            default: {
+            case 1 -> game();
+            case 2 -> mapEditor();
+            case 3 -> exitGame();
+            default -> {
                 System.out.println("NEM LÉTEZIK ILYEN PARANCS");
                 mainMenu();
             }
@@ -45,10 +39,8 @@ public class Game {
         System.out.println("2. PÁLYA BETÖLTÉSE ADATBÁZISBÓL");
         System.out.println("3. VISSZA A FŐMENÜBE");
         switch (userInput.getUserInputAsInt()) {
-            case 3:
-                mainMenu();
-                break;
-            default: {
+            case 3 -> mainMenu();
+            default -> {
                 System.out.println("#cominsoon or #wrongcommand");
                 game();
             }
@@ -62,9 +54,8 @@ public class Game {
         System.out.println("3. PÁLYA MENTÉSE    #comingsoon");
         System.out.println("4. VISSZA A FŐMENÜBE");
         switch (userInput.getUserInputAsInt()) {
-            case 4:
-                mainMenu();
-            default: {
+            case 4 -> mainMenu();
+            default -> {
                 System.out.println("#cominsoon or #wrongcommand");
                 mapEditor();
             }
