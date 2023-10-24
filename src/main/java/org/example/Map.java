@@ -7,6 +7,14 @@ public class Map {
     private GameObject[][] map;
     private int size;
 
+    public GameObject[][] getMap() {
+        return map;
+    }
+
+    public int getSize() {
+        return size;
+    }
+
     public Map(int size) {
         if (size < 6) {
             this.size = 6;
