@@ -1,0 +1,33 @@
+package org.example;
+
+public class MainMenu {
+    private Game game;
+    private MapEditor mapEditor;
+    private UserInput userInput;
+
+    public MainMenu(Game game, UserInput userInput) {
+        this.game = game;
+        this.userInput = userInput;
+        this.mapEditor = new MapEditor(game,userInput,this);
+    }
+
+    public void startMainMenu() {
+        System.out.println("-------FŐMENÜ-------");
+        System.out.println("1. JÁTÉK");
+        System.out.println("2. PÁLYASZERKESZTÉS");
+        System.out.println("3. KILÉPÉS");
+        handleMainMenuInput(userInput.getUserInputAsInt());
+    }
+
+    private void handleMainMenuInput(int input) {
+        switch (input) {
+            case 1 -> game.game();
+            case 2 -> mapEditor.mapEditor();
+            case 3 -> game.exitGame();
+            default -> {
+                System.out.println("NEM LÉTEZIK ILYEN PARANCS");
+                startMainMenu();
+            }
+        }
+    }
+}

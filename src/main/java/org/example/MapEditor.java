@@ -2,16 +2,17 @@ package org.example;
 
 import org.example.objects.*;
 
-import java.sql.SQLOutput;
-
 public class MapEditor {
     private Map map;
     private UserInput userInput;
     private Game game;
+    private MainMenu mainMenu;
     private int x,y;
 
-    public MapEditor() {
-        userInput = new UserInput();
+    public MapEditor(Game game, UserInput userInput, MainMenu mainMenu) {
+        this.userInput = userInput;
+        this.game = game;
+        this.mainMenu = mainMenu;
     }
 
     public void mapEditor() {
@@ -26,7 +27,7 @@ public class MapEditor {
     private void handleMapEditorInput(int input) {
         switch (input) {
             case 1 -> createMapMenu();
-            case 4 -> game.startMainMenu();
+            case 4 -> mainMenu.startMainMenu();
             default -> {
                 System.out.println("#cominsoon or #wrongcommand");
                 mapEditor();
