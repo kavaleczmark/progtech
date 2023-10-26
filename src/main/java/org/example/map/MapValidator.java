@@ -9,15 +9,15 @@ public class MapValidator {
     public MapValidator() {
     }
 
-    private int getHeroCount() {
+    public int getHeroCount() {
         return map.counterOfObject(ObjectTypes.HERO);
     }
 
-    private int getGoldCount() {
+    public int getGoldCount() {
         return map.counterOfObject(ObjectTypes.GOLD);
     }
 
-    private int getWumpusCount() {
+    public int getWumpusCount() {
         return map.counterOfObject(ObjectTypes.WUMPUS);
     }
 

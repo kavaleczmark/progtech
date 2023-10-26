@@ -1,13 +1,15 @@
 import org.example.map.Map;
 import org.example.map.MapEditor;
+import org.example.map.MapValidator;
+import org.example.objects.Hero;
 import org.example.objects.ObjectTypes;
 import org.example.service.UserInput;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
@@ -17,6 +19,9 @@ public class UnitTests {
     private UserInput userInput;
     @Mock
     private MapEditor mapEditor;
+    @Mock
+    private MapValidator mapValidator;
+    private ObjectTypes types;
     private Map map;
 
     @Test
@@ -55,5 +60,13 @@ public class UnitTests {
     public void test2() {
         mapEditor.createMapMenu();
         verify(mapEditor,times(1)).createMapMenu();
+    }
+    @Test
+    public void shouldGetCorrectNumberOfHeroes() {
+        MapValidator mapValidator = mock(MapValidator.class);
+        when(mapValidator.getHeroCount()).thenReturn(0);
+        int expected = 0;
+        int actual = mapValidator.getHeroCount();
+        assertEquals(expected, actual);
     }
 }
