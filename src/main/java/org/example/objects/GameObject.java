@@ -6,7 +6,7 @@ public class GameObject {
         return "\t";
     }
 
-    public ObjectTypes getObJectTypes() {
+    public ObjectTypes getType() {
         return ObjectTypes.EMPTY;
     }
 }

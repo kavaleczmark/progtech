@@ -7,7 +7,7 @@ public class Hero extends GameObject {
         return "HERO";
     }
 
-    public ObjectTypes getObJectTypes() {
+    public ObjectTypes getType() {
         return ObjectTypes.HERO;
     }
 }

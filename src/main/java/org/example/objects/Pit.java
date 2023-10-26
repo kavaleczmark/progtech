@@ -7,7 +7,7 @@ public class Pit extends GameObject {
         return "PIT";
     }
 
-    public ObjectTypes getObJectTypes() {
+    public ObjectTypes getType() {
         return ObjectTypes.PIT;
     }
 }

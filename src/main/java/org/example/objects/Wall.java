@@ -7,7 +7,7 @@ public class Wall extends GameObject {
         return "WALL";
     }
 
-    public ObjectTypes getObJectTypes() {
+    public ObjectTypes getType() {
         return ObjectTypes.WALL;
     }
 }

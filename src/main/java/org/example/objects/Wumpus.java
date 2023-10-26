@@ -7,7 +7,7 @@ public class Wumpus extends GameObject {
         return "WUMPUS";
     }
 
-    public ObjectTypes getObJectTypes() {
+    public ObjectTypes getType() {
         return ObjectTypes.WUMPUS;
     }
 }
