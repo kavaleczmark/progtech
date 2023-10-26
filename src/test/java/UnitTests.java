@@ -1,7 +1,7 @@
-import org.example.Map;
-import org.example.MapEditor;
-import org.example.ObjectTypes;
-import org.example.UserInput;
+import org.example.map.Map;
+import org.example.map.MapEditor;
+import org.example.objects.ObjectTypes;
+import org.example.service.UserInput;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;

@@ -1,5 +1,6 @@
-package org.example;
+package org.example.map;
 
+import org.example.objects.ObjectTypes;
 import org.example.objects.*;
 
 public class Map {
@@ -41,13 +42,20 @@ public class Map {
     }
 
     public void printMap() {
+        System.out.print(" \t");
+        for (int i = 'A'; i < 'A' + size; i++) {
+            System.out.print(" " + (char) i + " \t \t");
+        }
+        System.out.println();
         for (int i = 0; i < size; i++) {
+            System.out.print(i + 1 + " \t");
             for (int j = 0; j < size; j++) {
                 System.out.print(map[i][j].getName() + " \t");
             }
             System.out.println();
             System.out.println();
         }
+
     }
 
     private void loadWall() {
@@ -58,11 +66,12 @@ public class Map {
             map[i][size - 1] = new Wall();
         }
     }
+
     public int counterOfObject(ObjectTypes type) {
-        int counter=0;
+        int counter = 0;
         for (int i = 0; i < size; i++) {
             for (int j = 0; j < size; j++) {
-                if(map[i][j].getObJectTypes()==type){
+                if (map[i][j].getObJectTypes() == type) {
                     counter++;
                 }
             }

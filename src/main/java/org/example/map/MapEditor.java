@@ -1,5 +1,8 @@
-package org.example;
+package org.example.map;
 
+import org.example.game.Game;
+import org.example.menu.MainMenu;
+import org.example.service.UserInput;
 import org.example.objects.*;
 
 public class MapEditor {
@@ -7,7 +10,7 @@ public class MapEditor {
     private UserInput userInput;
     private Game game;
     private MainMenu mainMenu;
-    private int x,y;
+    private int x, y;
 
     public MapEditor(Game game, UserInput userInput, MainMenu mainMenu) {
         this.userInput = userInput;
@@ -34,20 +37,19 @@ public class MapEditor {
             }
         }
     }
+
     public void createMapMenu() {
         System.out.println("-------PÁLYA LÉTREHOZÁSA-------");
         createMap();
-        System.out.println("1. ELEM HOZZÁADÁSA");
-        System.out.println("2. ELEM TÖRLÉSE");
-        System.out.println("3. ELEM MÓDOSOÍTÁSA");
-        System.out.println("4. VISSZA");
+        System.out.println("1. POZICIÓ VÁLASZTÁSA");
+        System.out.println("2. VISSZA");
         handleCreateMapMenuInput(userInput.getUserInputAsInt());
     }
 
     private void handleCreateMapMenuInput(int input) {
-        switch(input) {
+        switch (input) {
             case 1 -> choosePosition();
-            case 4 -> mapEditor();
+            case 2 -> mapEditor();
             default -> {
                 System.out.println("#cominsoon or #wrongcommand");
                 mapEditor();
@@ -62,22 +64,23 @@ public class MapEditor {
     }
 
     private void choosePosition() {
-        int x,y;
+        int x, y;
         do {
             System.out.println("Válassz oszlopot (pl. 'a'): ");
-            y = userInput.getUserInputAsChar()-'a';
+            y = userInput.getUserInputAsChar() - 'a';
             System.out.println("Válassz sort (pl. 1): ");
-            x = userInput.getUserInputAsInt()-1;
-        } while(x<0 || x> map.getSize()-1 || y<0 || y> map.getSize()-1);
-        this.x=x;
-        this.y=y;
+            x = userInput.getUserInputAsInt() - 1;
+        } while (x < 0 || x > map.getSize() - 1 || y < 0 || y > map.getSize() - 1);
+        this.x = x;
+        this.y = y;
         fillObjects();
 
     }
+
     private void continueGame() {
         System.out.println("1. FOLYTATÁS");
         System.out.println("2. MENTÉS/KILÉPÉS");
-        switch(userInput.getUserInputAsInt()){
+        switch (userInput.getUserInputAsInt()) {
             case 1 -> choosePosition();
             case 2 -> mapEditor();
         }
@@ -87,11 +90,12 @@ public class MapEditor {
     private void fillObjects() {
         System.out.println("-------VÁLASSZON EGY ELEMET!-------");
         System.out.println("1. GOLD \n" +
-                           "2. HERO \n" +
-                           "3. PIT  \n" +
-                           "4. WUMPUS \n" +
-                           "5. VISSZA");
-        switch (userInput.getUserInputAsInt()){
+                "2. HERO \n" +
+                "3. PIT  \n" +
+                "4. WUMPUS \n" +
+                "5. ELEM TÖRLÉSE \n" +
+                "6. VISSZA");
+        switch (userInput.getUserInputAsInt()) {
             case 1 -> {
                 map.getMap()[x][y] = new Gold();
                 map.printMap();
@@ -112,8 +116,13 @@ public class MapEditor {
                 map.printMap();
                 continueGame();
             }
-            case 5 -> mapEditor();
+            case 5 -> {
+                map.getMap()[x][y] = new GameObject();
+                map.printMap();
+                continueGame();
+
+            }
+            case 6 -> mapEditor();
         }
     }
-
 }

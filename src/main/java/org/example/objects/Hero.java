@@ -1,7 +1,5 @@
 package org.example.objects;
 
-import org.example.ObjectTypes;
-
 public class Hero extends GameObject {
 
     @Override

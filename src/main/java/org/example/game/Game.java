@@ -1,13 +1,17 @@
-package org.example;
+package org.example.game;
+
+import org.example.service.UserInput;
+import org.example.menu.MainMenu;
 
 public class Game {
+
     private UserInput userInput;
     private String userName;
     private MainMenu mainMenu;
 
     public Game() {
         this.userInput = new UserInput();
-        this.mainMenu = new MainMenu(this,userInput);
+        this.mainMenu = new MainMenu(this, userInput);
     }
 
     public void startGame() {

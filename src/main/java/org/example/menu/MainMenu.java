@@ -1,6 +1,11 @@
-package org.example;
+package org.example.menu;
+
+import org.example.game.Game;
+import org.example.service.UserInput;
+import org.example.map.MapEditor;
 
 public class MainMenu {
+
     private Game game;
     private MapEditor mapEditor;
     private UserInput userInput;
@@ -8,7 +13,7 @@ public class MainMenu {
     public MainMenu(Game game, UserInput userInput) {
         this.game = game;
         this.userInput = userInput;
-        this.mapEditor = new MapEditor(game,userInput,this);
+        this.mapEditor = new MapEditor(game, userInput, this);
     }
 
     public void startMainMenu() {
