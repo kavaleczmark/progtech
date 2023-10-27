@@ -3,16 +3,20 @@ import org.example.map.Map;
 import org.example.map.MapEditor;
 import org.example.map.MapValidator;
 import org.example.menu.MainMenu;
-import org.example.objects.Hero;
-import org.example.objects.ObjectTypes;
+import org.example.objects.*;
 import org.example.service.UserInput;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.PrintStream;
+
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
@@ -100,4 +104,57 @@ public class UnitTests {
         assertNotNull(mainMenu);
     }
 
+    @Test
+    public void testIsActionPossible_Wumpus() {
+        Map map = new Map(9);
+        MapValidator mapValidator = new MapValidator();
+        map.getMap()[0][1] = new Wumpus();
+        map.getMap()[0][2] = new Wumpus();
+        map.getMap()[0][3] = new Wumpus();
+
+        mapValidator.isActionPossible(ObjectTypes.WUMPUS, map);
+
+        assertTrue(mapValidator.isActionPossible(ObjectTypes.WUMPUS, map));
+    }
+    @Test
+    public void testIsActionPossible_Gold() {
+        Map map = new Map(13);
+        MapValidator mapValidator = new MapValidator();
+        map.getMap()[0][1] = new Gold();
+        map.getMap()[1][2] = new Gold();
+        map.getMap()[4][3] = new Gold();
+
+        mapValidator.isActionPossible(ObjectTypes.GOLD, map);
+
+        assertTrue(mapValidator.isActionPossible(ObjectTypes.GOLD, map));
+    }
+
+    public void testIsActionPossible_Hero() {
+        Map map = new Map(6);
+        MapValidator mapValidator = new MapValidator();
+        map.getMap()[2][1] = new Hero();
+        map.getMap()[1][4] = new Hero();
+        map.getMap()[3][3] = new Hero();
+
+        mapValidator.isActionPossible(ObjectTypes.HERO, map);
+
+        assertFalse(mapValidator.isActionPossible(ObjectTypes.HERO, map));
+    }
+
+    @Test
+    public void testGetUserName() {
+        when(userInput.getUserInputAsString()).thenReturn("John");
+        game.startGame();
+        game.getUserName();
+        userInput.getUserInputAsString();
+        verify(userInput).getUserInputAsString();
+    }
+
+    @Test
+    void testCallGame() {
+        game.game();
+        verify(game, times(1)).game();
+    }
+
 }
+

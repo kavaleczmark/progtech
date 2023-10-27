@@ -97,8 +97,9 @@ public class MapEditor {
                 "2. HERO \n" +
                 "3. PIT  \n" +
                 "4. WUMPUS \n" +
-                "5. ELEM TÖRLÉSE \n" +
-                "6. VISSZA");
+                "5. WALL \n" +
+                "6. ELEM TÖRLÉSE \n" +
+                "7. VISSZA");
         switch (userInput.getUserInputAsInt()) {
             case 1 -> {
                 if(mapValidator.isActionPossible(ObjectTypes.GOLD, map)) {
@@ -106,7 +107,6 @@ public class MapEditor {
                     map.printMap();
                 }
                 else {
-                    map.printMap();
                     System.out.println("Nem lehetséges ez a parancs validálás miatt!");
                 }
                 continueGame();
@@ -117,7 +117,6 @@ public class MapEditor {
                     map.printMap();
                 }
                 else {
-                    map.printMap();
                     System.out.println("Nem lehetséges ez a parancs validálás miatt!");
                 }
                 continueGame();
@@ -133,18 +132,22 @@ public class MapEditor {
                     map.printMap();
                 }
                 else {
-                    map.printMap();
                     System.out.println("Nem lehetséges ez a parancs validálás miatt!");
                 }
                 continueGame();
             }
             case 5 -> {
+                map.getMap()[x][y] = new Wall();
+                map.printMap();
+                continueGame();
+            }
+            case 6 -> {
                 map.getMap()[x][y] = new GameObject();
                 map.printMap();
                 continueGame();
 
             }
-            case 6 -> mapEditor();
+            case 7 -> mapEditor();
         }
     }
 }
