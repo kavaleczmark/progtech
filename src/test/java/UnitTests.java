@@ -1,6 +1,8 @@
+import org.example.game.Game;
 import org.example.map.Map;
 import org.example.map.MapEditor;
 import org.example.map.MapValidator;
+import org.example.menu.MainMenu;
 import org.example.objects.Hero;
 import org.example.objects.ObjectTypes;
 import org.example.service.UserInput;
@@ -10,6 +12,7 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
@@ -20,8 +23,9 @@ public class UnitTests {
     @Mock
     private MapEditor mapEditor;
     @Mock
-    private MapValidator mapValidator;
-    private ObjectTypes types;
+    private MainMenu mainMenu;
+    @Mock
+    private Game game;
     private Map map;
 
     @Test
@@ -61,6 +65,7 @@ public class UnitTests {
         mapEditor.createMapMenu();
         verify(mapEditor,times(1)).createMapMenu();
     }
+
     @Test
     public void shouldGetCorrectNumberOfHeroes() {
         MapValidator mapValidator = mock(MapValidator.class);
@@ -69,4 +74,30 @@ public class UnitTests {
         int actual = mapValidator.getHeroCount();
         assertEquals(expected, actual);
     }
+
+    @Test
+    public void shouldGetCorrectNumberOfGold() {
+        MapValidator mapValidator = mock(MapValidator.class);
+        when(mapValidator.getGoldCount()).thenReturn(0);
+        int expected = 0;
+        int actual = mapValidator.getGoldCount();
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    public void shouldGetCorrectNumberOfWumpus() {
+        MapValidator mapValidator = mock(MapValidator.class);
+        when(mapValidator.getWumpusCount()).thenReturn(2);
+        int expected = 2;
+        int actual = mapValidator.getWumpusCount();
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    public void testGameCreation() {
+        assertNotNull(game);
+        assertNotNull(userInput);
+        assertNotNull(mainMenu);
+    }
+
 }

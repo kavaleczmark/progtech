@@ -19,7 +19,7 @@ public class Game {
         mainMenu.startMainMenu();
     }
 
-    private void getUserName() {
+    public void getUserName() {
         System.out.println("Üdvözlünk a Wumpus játékban!\nÍrd be a felhasználóneved: ");
         userName = userInput.getUserInputAsString();
         System.out.println("Köszönjük! További jó szórakozást " + userName + "!");

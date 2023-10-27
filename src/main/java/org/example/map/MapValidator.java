@@ -39,7 +39,7 @@ public class MapValidator {
         return true;
     }
 
-    private int getPossibleWumpusCount() {
+    public int getPossibleWumpusCount() {
         int size=map.getSize();
         if(size<=8)
             return 1;
