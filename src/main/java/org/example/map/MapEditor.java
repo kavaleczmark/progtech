@@ -107,7 +107,8 @@ public class MapEditor {
                     map.printMap();
                 }
                 else {
-                    System.out.println("Nem lehetséges ez a parancs validálás miatt!");
+                    map.printMap();
+                    System.out.println("Nem lehet 1-nél több GOLD a pályán!");
                 }
                 continueGame();
             }
@@ -117,7 +118,8 @@ public class MapEditor {
                     map.printMap();
                 }
                 else {
-                    System.out.println("Nem lehetséges ez a parancs validálás miatt!");
+                    map.printMap();
+                    System.out.println("Nem lehet 1-nél több HERO a pályán!");
                 }
                 continueGame();
             }
