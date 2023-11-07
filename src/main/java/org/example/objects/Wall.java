@@ -10,4 +10,8 @@ public class Wall extends GameObject {
     public ObjectTypes getType() {
         return ObjectTypes.WALL;
     }
+
+    public String getSaveAbleName() {
+        return getName();
+    }
 }

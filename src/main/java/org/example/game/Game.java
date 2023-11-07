@@ -1,5 +1,6 @@
 package org.example.game;
 
+import org.example.menu.GameMenu;
 import org.example.service.UserInput;
 import org.example.menu.MainMenu;
 
@@ -8,10 +9,12 @@ public class Game {
     private UserInput userInput;
     private String userName;
     private MainMenu mainMenu;
+    private GameMenu gameMenu;
 
     public Game() {
         this.userInput = new UserInput();
         this.mainMenu = new MainMenu(this, userInput);
+        this.gameMenu = new GameMenu(this, userInput);
     }
 
     public void startGame() {
@@ -35,6 +38,7 @@ public class Game {
 
     private void handleGameInput(int input) {
         switch (input) {
+            case 1 -> gameMenu.loadLevelForGame();
             case 3 -> mainMenu.startMainMenu();
             default -> {
                 System.out.println("#comingsoon or #wrongcommand");

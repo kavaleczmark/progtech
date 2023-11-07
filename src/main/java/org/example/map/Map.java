@@ -12,6 +12,10 @@ public class Map {
         return map;
     }
 
+    public void setMap(GameObject[][] map) {
+        this.map = map;
+    }
+
     public int getSize() {
         return size;
     }
@@ -55,7 +59,6 @@ public class Map {
             System.out.println();
             System.out.println();
         }
-
     }
 
     private void loadWall() {

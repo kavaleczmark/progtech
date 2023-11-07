@@ -10,4 +10,8 @@ public class Hero extends GameObject {
     public ObjectTypes getType() {
         return ObjectTypes.HERO;
     }
+
+    public String getSaveAbleName() {
+        return getName();
+    }
 }

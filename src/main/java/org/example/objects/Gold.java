@@ -10,4 +10,8 @@ public class Gold extends GameObject {
     public ObjectTypes getType() {
         return ObjectTypes.GOLD;
     }
+
+    public String getSaveAbleName() {
+        return getName();
+    }
 }

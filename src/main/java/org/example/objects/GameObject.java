@@ -9,4 +9,8 @@ public class GameObject {
     public ObjectTypes getType() {
         return ObjectTypes.EMPTY;
     }
+
+    public String getSaveAbleName() {
+        return "EMPTY";
+    }
 }

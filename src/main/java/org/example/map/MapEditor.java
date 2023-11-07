@@ -23,8 +23,8 @@ public class MapEditor {
     public void mapEditor() {
         System.out.println("-------PÁLYASZERKESZTŐ-------");
         System.out.println("1. PÁLYA LÉTREHOZÁSA");
-        System.out.println("2. PÁLYA BETÖLTÉSE    #comingsoon");
-        System.out.println("3. PÁLYA MENTÉSE    #comingsoon");
+        System.out.println("2. PÁLYA BETÖLTÉSE");
+        System.out.println("3. PÁLYA MENTÉSE");
         System.out.println("4. VISSZA A FŐMENÜBE");
         handleMapEditorInput(userInput.getUserInputAsInt());
     }
@@ -32,12 +32,28 @@ public class MapEditor {
     private void handleMapEditorInput(int input) {
         switch (input) {
             case 1 -> createMapMenu();
+            case 2 -> loadMap();
+            case 3 -> saveMap();
             case 4 -> mainMenu.startMainMenu();
             default -> {
                 System.out.println("#cominsoon or #wrongcommand");
                 mapEditor();
             }
         }
+    }
+
+    private void saveMap() {
+        MapSaver mapSaver = new MapSaver();
+        System.out.println("Add meg a pálya nevét!");
+        mapSaver.saveMap(map, userInput.getUserInputAsString());
+        mapEditor();
+    }
+
+    public void loadMap() {
+        MapLoader mapLoader = new MapLoader();
+        System.out.println("Add meg a betöltendő pálya nevét!");
+        map = mapLoader.loadMap(userInput.getUserInputAsString());
+        map.printMap();
     }
 
     public void createMapMenu() {
@@ -82,7 +98,7 @@ public class MapEditor {
 
     private void continueGame() {
         System.out.println("1. FOLYTATÁS");
-        System.out.println("2. MENTÉS/KILÉPÉS");
+        System.out.println("2. VISSZA A MENÜBE");
         switch (userInput.getUserInputAsInt()) {
             case 1 -> choosePosition();
             case 2 -> mapEditor();
@@ -93,30 +109,28 @@ public class MapEditor {
         System.out.println("-------VÁLASSZON EGY ELEMET!-------");
         System.out.println(
                 "1. GOLD \n" +
-                "2. HERO \n" +
-                "3. PIT  \n" +
-                "4. WUMPUS \n" +
-                "5. WALL \n" +
-                "6. ELEM TÖRLÉSE \n" +
-                "7. VISSZA");
+                        "2. HERO \n" +
+                        "3. PIT  \n" +
+                        "4. WUMPUS \n" +
+                        "5. WALL \n" +
+                        "6. ELEM TÖRLÉSE \n" +
+                        "7. VISSZA");
         switch (userInput.getUserInputAsInt()) {
             case 1 -> {
-                if(mapValidator.isActionPossible(ObjectTypes.GOLD, map)) {
+                if (mapValidator.isActionPossible(ObjectTypes.GOLD, map)) {
                     map.getMap()[x][y] = new Gold();
                     map.printMap();
-                }
-                else {
+                } else {
                     map.printMap();
                     System.out.println("Nem lehet 1-nél több GOLD a pályán!");
                 }
                 continueGame();
             }
             case 2 -> {
-                if(mapValidator.isActionPossible(ObjectTypes.HERO, map)) {
+                if (mapValidator.isActionPossible(ObjectTypes.HERO, map)) {
                     map.getMap()[x][y] = new Hero();
                     map.printMap();
-                }
-                else {
+                } else {
                     map.printMap();
                     System.out.println("Nem lehet 1-nél több HERO a pályán!");
                 }
@@ -128,11 +142,10 @@ public class MapEditor {
                 continueGame();
             }
             case 4 -> {
-                if(mapValidator.isActionPossible(ObjectTypes.WUMPUS, map)) {
+                if (mapValidator.isActionPossible(ObjectTypes.WUMPUS, map)) {
                     map.getMap()[x][y] = new Wumpus();
                     map.printMap();
-                }
-                else {
+                } else {
                     System.out.println("Nem lehetséges ez a parancs validálás miatt!");
                 }
                 continueGame();

@@ -10,4 +10,8 @@ public class Pit extends GameObject {
     public ObjectTypes getType() {
         return ObjectTypes.PIT;
     }
+
+    public String getSaveAbleName() {
+        return getName();
+    }
 }

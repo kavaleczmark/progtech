@@ -10,4 +10,8 @@ public class Wumpus extends GameObject {
     public ObjectTypes getType() {
         return ObjectTypes.WUMPUS;
     }
+
+    public String getSaveAbleName() {
+        return getName();
+    }
 }
