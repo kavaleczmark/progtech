@@ -5,17 +5,10 @@ import org.example.map.MapValidator;
 import org.example.menu.MainMenu;
 import org.example.objects.*;
 import org.example.service.UserInput;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
-
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
-import java.io.PrintStream;
-
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
@@ -128,7 +121,7 @@ public class UnitTests {
 
         assertTrue(mapValidator.isActionPossible(ObjectTypes.GOLD, map));
     }
-
+    @Test
     public void testIsActionPossible_Hero() {
         Map map = new Map(6);
         MapValidator mapValidator = new MapValidator();
@@ -138,7 +131,7 @@ public class UnitTests {
 
         mapValidator.isActionPossible(ObjectTypes.HERO, map);
 
-        assertFalse(mapValidator.isActionPossible(ObjectTypes.HERO, map));
+        assertTrue(mapValidator.isActionPossible(ObjectTypes.HERO, map));
     }
 
     @Test

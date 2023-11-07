@@ -87,7 +87,6 @@ public class MapEditor {
             case 1 -> choosePosition();
             case 2 -> mapEditor();
         }
-
     }
 
     private void fillObjects() {
