@@ -2,6 +2,7 @@ import org.example.game.Game;
 import org.example.map.Map;
 import org.example.map.MapEditor;
 import org.example.map.MapValidator;
+import org.example.game.GameService;
 import org.example.menu.MainMenu;
 import org.example.objects.*;
 import org.example.service.UserInput;
@@ -23,6 +24,8 @@ public class UnitTests {
     private MainMenu mainMenu;
     @Mock
     private Game game;
+    @Mock
+    private GameService gameMenu;
     private Map map;
 
     @Test

@@ -1,23 +1,24 @@
-package org.example.map;
+package org.example.game;
 
-import org.example.service.UserInput;
+import org.example.map.Map;
 
 import java.io.FileWriter;
 import java.io.IOException;
 
-public class MapSaver {
-
-    public MapSaver() {
+public class GameSaver {
+    private Game game;
+    public GameSaver(Game game) {
+        this.game = game;
     }
 
-    public void saveMap(Map map, String mapName) {
+    public void saveGame(Map map) {
         if(map == null) {
             System.out.println("Előbb hozz létre egy pályát");
             return;
         }
         int mapSize = map.getSize();
         try {
-            FileWriter myWriter = new FileWriter(mapName+".txt");
+            FileWriter myWriter = new FileWriter(game.getName()+".txt");
             myWriter.write(mapSize+"\n");
             for (int i = 0; i < mapSize; i++) {
                 for (int j = 0; j < mapSize; j++) {

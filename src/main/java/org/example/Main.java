@@ -1,6 +1,7 @@
 package org.example;
 
 import org.example.game.Game;
+import org.example.map.Map;
 
 public class Main {
 
