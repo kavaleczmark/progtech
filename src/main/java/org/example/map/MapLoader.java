@@ -25,8 +25,11 @@ public class MapLoader {
                 while(sT.hasMoreTokens()) {
                     switch (sT.nextToken()) {
                         case "EMPTY" -> gameObjects[i][j] = new GameObject();
-                        case "GOLD" -> gameObjects[i][j] = new Gold();
-                        case "HERO" -> gameObjects[i][j] = new Hero();
+                        case "GOLD" -> gameObjects[i][j] = new Gold(i,j);
+                        case "HERO|E" -> gameObjects[i][j] = new Hero(i,j,'E');
+                        case "HERO|S" -> gameObjects[i][j] = new Hero(i,j,'S');
+                        case "HERO|N" -> gameObjects[i][j] = new Hero(i,j,'N');
+                        case "HERO|W" -> gameObjects[i][j] = new Hero(i,j,'W');
                         case "PIT" -> gameObjects[i][j] = new Pit();
                         case "WALL" -> gameObjects[i][j] = new Wall();
                         case "WUMPUS" -> gameObjects[i][j] = new Wumpus();

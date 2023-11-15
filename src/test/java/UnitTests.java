@@ -116,9 +116,9 @@ public class UnitTests {
     public void testIsActionPossible_Gold() {
         Map map = new Map(13);
         MapValidator mapValidator = new MapValidator();
-        map.getMap()[0][1] = new Gold();
-        map.getMap()[1][2] = new Gold();
-        map.getMap()[4][3] = new Gold();
+        map.getMap()[0][1] = new Gold(0,1);
+        map.getMap()[1][2] = new Gold(1,2);
+        map.getMap()[4][3] = new Gold(4,3);
 
         mapValidator.isActionPossible(ObjectTypes.GOLD, map);
 
@@ -128,9 +128,9 @@ public class UnitTests {
     public void testIsActionPossible_Hero() {
         Map map = new Map(6);
         MapValidator mapValidator = new MapValidator();
-        map.getMap()[2][1] = new Hero();
-        map.getMap()[1][4] = new Hero();
-        map.getMap()[3][3] = new Hero();
+        map.getMap()[2][1] = new Hero(0,1,'E');
+        map.getMap()[1][4] = new Hero(1,2,'E');
+        map.getMap()[3][3] = new Hero(4,3,'E');
 
         mapValidator.isActionPossible(ObjectTypes.HERO, map);
 

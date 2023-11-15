@@ -118,7 +118,7 @@ public class MapEditor {
         switch (userInput.getUserInputAsInt()) {
             case 1 -> {
                 if (mapValidator.isActionPossible(ObjectTypes.GOLD, map)) {
-                    map.getMap()[x][y] = new Gold();
+                    map.getMap()[x][y] = new Gold(x,y);
                     map.printMap();
                 } else {
                     map.printMap();
@@ -128,7 +128,7 @@ public class MapEditor {
             }
             case 2 -> {
                 if (mapValidator.isActionPossible(ObjectTypes.HERO, map)) {
-                    map.getMap()[x][y] = new Hero();
+                    map.getMap()[x][y] = new Hero(x,y,'E');
                     map.printMap();
                 } else {
                     map.printMap();

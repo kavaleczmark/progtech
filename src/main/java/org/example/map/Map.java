@@ -11,6 +11,17 @@ public class Map {
     public GameObject[][] getMap() {
         return map;
     }
+    public Hero getHero (){
+        for (int i = 0; i < size; i++) {
+            for (int j = 0; j < size; j++) {
+                if(map[i][j] instanceof Hero)
+                {
+                    return (Hero) map[i][j];
+                }
+            }
+        }
+        return null;
+    }
 
     public void setMap(GameObject[][] map) {
         this.map = map;
