@@ -143,7 +143,7 @@ public class MapEditor {
             }
             case 4 -> {
                 if (mapValidator.isActionPossible(ObjectTypes.WUMPUS, map)) {
-                    map.getMap()[x][y] = new Wumpus();
+                    map.getMap()[x][y] = new Wumpus(x,y);
                     map.printMap();
                 } else {
                     System.out.println("Nem lehetséges ez a parancs validálás miatt!");

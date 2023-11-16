@@ -25,6 +25,10 @@ public class Game implements GameAction {
         this.map = map;
     }
 
+    public Map getMap() {
+        return map;
+    }
+
     public void startGame() {
         getUserName();
         mainMenu.startMainMenu();
@@ -121,10 +125,17 @@ public class Game implements GameAction {
     }
     public void movementHero() {
         System.out.println("-------Kontroller-------");
-        System.out.println("         ➷ "+numberOfArrows()+" ➹");
+        System.out.println("        \uD83C\uDFF9 "+map.getHero().getNumberOfArrows()+" \uD83C\uDFF9");
+        System.out.println("        \uD83D\uDC7E "+map.counterOfObject(ObjectTypes.WUMPUS)+" \uD83D\uDC7E");
+        if(map.getHero().isHasGold()) {
+            System.out.println("       \uD83E\uDD47 VAN \uD83E\uDD47");
+        } else if(!map.getHero().isHasGold()){
+            System.out.println("      \uD83E\uDD47 NINCS \uD83E\uDD47");
+        }
         System.out.println("JOBBRA FORDUL - R");
         System.out.println("BALRA FORDUL - L");
         System.out.println("ELŐRE LÉP - W");
+        System.out.println("LŐ - F");
         System.out.println("VISSZA - X");
         handleMovementInput(userInput.getUserInputAsChar());
 
@@ -135,6 +146,7 @@ public class Game implements GameAction {
             case 'R', 'r' -> heroAction.turnRightHero(map);
             case 'L', 'l' -> heroAction.turnLeftHero(map);
             case 'W', 'w' -> heroAction.stepsOneHero(map);
+            case 'F', 'f' -> heroAction.killWumpusWithArrows(map);
             case 'X', 'x' -> gameController();
             default -> {
                 System.out.println("#comingsoon or #wrongcommand");
@@ -145,8 +157,4 @@ public class Game implements GameAction {
         movementHero();
     }
 
-    public int numberOfArrows () {
-        map.getHero().setNumberOfArrows(map.counterOfObject(ObjectTypes.WUMPUS));
-        return map.getHero().getNumberOfArrows();
-    }
 }

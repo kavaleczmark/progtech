@@ -104,9 +104,9 @@ public class UnitTests {
     public void testIsActionPossible_Wumpus() {
         Map map = new Map(9);
         MapValidator mapValidator = new MapValidator();
-        map.getMap()[0][1] = new Wumpus();
-        map.getMap()[0][2] = new Wumpus();
-        map.getMap()[0][3] = new Wumpus();
+        map.getMap()[0][1] = new Wumpus(0,1);
+        map.getMap()[0][2] = new Wumpus(1,2);
+        map.getMap()[0][3] = new Wumpus(4,3);
 
         mapValidator.isActionPossible(ObjectTypes.WUMPUS, map);
 

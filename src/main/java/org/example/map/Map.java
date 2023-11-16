@@ -22,6 +22,17 @@ public class Map {
         }
         return null;
     }
+    public Gold getGold (){
+        for (int i = 0; i < size; i++) {
+            for (int j = 0; j < size; j++) {
+                if(map[i][j] instanceof Gold)
+                {
+                    return (Gold) map[i][j];
+                }
+            }
+        }
+        return null;
+    }
 
     public void setMap(GameObject[][] map) {
         this.map = map;

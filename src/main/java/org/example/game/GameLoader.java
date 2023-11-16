@@ -1,5 +1,6 @@
-package org.example.map;
+package org.example.game;
 
+import org.example.map.Map;
 import org.example.objects.*;
 
 import java.io.BufferedReader;
@@ -7,7 +8,7 @@ import java.io.FileReader;
 import java.util.StringTokenizer;
 import java.io.IOException;
 
-public class MapLoader {
+public class GameLoader {
     public Map loadMap(String mapName) {
         GameObject[][] gameObjects = null;
         int i=0, j=0;
