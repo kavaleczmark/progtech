@@ -5,7 +5,7 @@ import org.example.objects.ObjectTypes;
 import org.example.service.UserInput;
 import org.example.menu.MainMenu;
 
-public class Game implements GameAction {
+public class Game{
 
     private UserInput userInput;
     private String userName;
@@ -74,14 +74,12 @@ public class Game implements GameAction {
         exitGame();
     }
 
-    @Override
     public void giveUp() {
         System.out.println("A játéknak vége, feladtad!");
         System.out.println("Vissza a menübe!");
         mainMenu.startMainMenu();
     }
 
-    @Override
     public void postPone() {
         saveGame();
     }
