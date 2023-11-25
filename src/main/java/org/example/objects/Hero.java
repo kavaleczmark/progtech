@@ -5,10 +5,20 @@ public class Hero extends GameObject {
     private char direction = 'E';
     private int numberOfArrows;
     private boolean hasGold = false;
+    private boolean isWon = false;
+    private boolean isDead;
 
     public Hero(int x, int y, char direction) {
         super(x, y);
         this.direction = direction;
+    }
+
+    public boolean isWon() {
+        return isWon;
+    }
+
+    public void setWon(boolean won) {
+        isWon = won;
     }
 
     public boolean isHasGold() {
@@ -37,6 +47,9 @@ public class Hero extends GameObject {
 
     @Override
     public String getName() {
+        if(isDead){
+            return "DEAD";
+        }
         return "HERO|"+getDirection();
     }
 
@@ -48,4 +61,11 @@ public class Hero extends GameObject {
         return getName();
     }
 
+    public void setDead() {
+        this.isDead = true;
+    }
+
+    public boolean isDead() {
+        return isDead;
+    }
 }

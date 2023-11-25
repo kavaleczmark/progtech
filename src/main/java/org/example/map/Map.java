@@ -7,6 +7,9 @@ public class Map {
 
     private GameObject[][] map;
     private int size;
+    private int startingHeroX = 0;
+    private int startingHeroY = 0;
+    private int stepCount = 0;
 
     public GameObject[][] getMap() {
         return map;
@@ -22,6 +25,31 @@ public class Map {
         }
         return null;
     }
+
+    public int getStepCount() {
+        return stepCount;
+    }
+
+    public void setStepCount(int stepCount) {
+        this.stepCount = stepCount;
+    }
+
+    public int getStartingHeroX() {
+        return startingHeroX;
+    }
+
+    public void setStartingHeroX(int startingHeroX) {
+        this.startingHeroX = startingHeroX;
+    }
+
+    public int getStartingHeroY() {
+        return startingHeroY;
+    }
+
+    public void setStartingHeroY(int startingHeroY) {
+        this.startingHeroY = startingHeroY;
+    }
+
     public Gold getGold (){
         for (int i = 0; i < size; i++) {
             for (int j = 0; j < size; j++) {

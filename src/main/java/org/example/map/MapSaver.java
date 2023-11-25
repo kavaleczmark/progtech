@@ -1,5 +1,6 @@
 package org.example.map;
 
+import org.example.objects.ObjectTypes;
 import org.example.service.UserInput;
 
 import java.io.FileWriter;
@@ -19,6 +20,11 @@ public class MapSaver {
         try {
             FileWriter myWriter = new FileWriter(mapName+".txt");
             myWriter.write(mapSize+"\n");
+            myWriter.write(false +"\n");
+            myWriter.write(map.counterOfObject(ObjectTypes.WUMPUS)+"\n");
+            myWriter.write(0 + "\n");
+            myWriter.write(map.getHero().getX() + "\n");
+            myWriter.write(map.getHero().getY() + "\n");
             for (int i = 0; i < mapSize; i++) {
                 for (int j = 0; j < mapSize; j++) {
                     myWriter.write(map.getMap()[i][j].getSaveAbleName());

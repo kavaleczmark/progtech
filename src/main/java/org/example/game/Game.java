@@ -71,7 +71,7 @@ public class Game{
         GameSaver gameSaver = new GameSaver(this);
         gameSaver.saveGame(map);
         System.out.println("Játékállás elmentve!");
-        exitGame();
+        mainMenu.startMainMenu();
     }
 
     public void giveUp() {
@@ -122,23 +122,31 @@ public class Game{
         }
     }
     public void movementHero() {
-        System.out.println("-------Kontroller-------");
-        System.out.println("        \uD83C\uDFF9 "+map.getHero().getNumberOfArrows()+" \uD83C\uDFF9");
-        System.out.println("        \uD83D\uDC7E "+map.counterOfObject(ObjectTypes.WUMPUS)+" \uD83D\uDC7E");
-        if(map.getHero().isHasGold()) {
-            System.out.println("       \uD83E\uDD47 VAN \uD83E\uDD47");
-        } else if(!map.getHero().isHasGold()){
-            System.out.println("      \uD83E\uDD47 NINCS \uD83E\uDD47");
+        if(!map.getHero().isWon()) {
+            System.out.println("-------Kontroller-------");
+            System.out.println("        \uD83C\uDFF9 " + map.getHero().getNumberOfArrows() + " \uD83C\uDFF9");
+            System.out.println("        \uD83D\uDC7E " + map.counterOfObject(ObjectTypes.WUMPUS) + " \uD83D\uDC7E");
+            if (map.getHero().isHasGold()) {
+                System.out.println("       \uD83E\uDD47 VAN \uD83E\uDD47");
+            } else if (!map.getHero().isHasGold()) {
+                System.out.println("      \uD83E\uDD47 NINCS \uD83E\uDD47");
+            }
+            System.out.println("        "+((char)(map.getStartingHeroY()+'A'))+"-"+(map.getStartingHeroX()+1));
+            System.out.println(map.getStepCount());
+            System.out.println("JOBBRA FORDUL - R");
+            System.out.println("BALRA FORDUL - L");
+            System.out.println("ELŐRE LÉP - W");
+            System.out.println("LŐ - F");
+            System.out.println("VISSZA - X");
+            handleMovementInput(userInput.getUserInputAsChar());
+
         }
-        System.out.println("JOBBRA FORDUL - R");
-        System.out.println("BALRA FORDUL - L");
-        System.out.println("ELŐRE LÉP - W");
-        System.out.println("LŐ - F");
-        System.out.println("VISSZA - X");
-        handleMovementInput(userInput.getUserInputAsChar());
-
-
+        else {
+            System.out.println("GYŐZTÉL! LÉPÉSEID SZÁMA: "+ map.getStepCount());
+            mainMenu.startMainMenu();
+        }
     }
+
     private void handleMovementInput(char input) {
         switch (input) {
             case 'R', 'r' -> heroAction.turnRightHero(map);

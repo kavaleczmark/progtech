@@ -21,7 +21,6 @@ public class GameService {
         System.out.println("Írja be a pálya nevét:");
         gameLoader = new GameLoader();
         game.setMap(gameLoader.loadMap(userInput.getUserInputAsString()));
-        game.getMap().getHero().setNumberOfArrows(game.getMap().counterOfObject(ObjectTypes.WUMPUS));
         game.gameController();
     }
 

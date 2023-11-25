@@ -4,6 +4,99 @@ import org.example.map.Map;
 import org.example.objects.*;
 
 public class HeroAction {
+
+    public boolean isWonHero(Map map) {
+        Hero hero = map.getHero();
+        int x = hero.getX();
+        int y = hero.getY();
+        if(map.getStartingHeroX() == x && map.getStartingHeroY() ==y && hero.isHasGold()){
+            hero.setWon(true);
+            return true;
+        }
+        hero.setWon(false);
+        return false;
+    }
+
+    public void moveOnWumpus(Map map) {
+        GameObject[][] objectsMap = map.getMap();
+        Hero hero = map.getHero();
+        int x = hero.getX();
+        int y = hero.getY();
+        switch (map.getHero().getDirection()) {
+            case 'E' -> {
+                if(objectsMap[x][y+1] instanceof Wumpus) {
+                    objectsMap[x][y+1] = hero;
+                    objectsMap[x][y] = new GameObject();
+                    hero.setDead();
+                    map.printMap();
+                    System.out.println("Játéknak vége, megölt a Wumpus!");
+                    System.exit(0);
+                }
+            }
+            case 'W' -> {
+                if(objectsMap[x][y-1] instanceof Wumpus) {
+                    objectsMap[x][y-1] = hero;
+                    objectsMap[x][y] = new GameObject();
+                    hero.setDead();
+                    map.printMap();
+                    System.out.println("Játéknak vége, megölt a Wumpus!");
+                    System.exit(0);
+                }
+            }
+            case 'N' -> {
+                if(objectsMap[x-1][y] instanceof Wumpus) {
+                    objectsMap[x-1][y] = hero;
+                    objectsMap[x][y] = new GameObject();
+                    hero.setDead();
+                    map.printMap();
+                    System.out.println("Játéknak vége, megölt a Wumpus!");
+                    System.exit(0);
+                }
+            }
+            case 'S' -> {
+                if(objectsMap[x+1][y] instanceof Wumpus) {
+                    objectsMap[x+1][y] = hero;
+                    objectsMap[x][y] = new GameObject();
+                    hero.setDead();
+                    map.printMap();
+                    System.out.println("Játéknak vége, megölt a Wumpus!");
+                    System.exit(0);
+                }
+            }
+        }
+    }
+    public void moveOnPit(Map map) {
+        GameObject[][] objectsMap = map.getMap();
+        Hero hero = map.getHero();
+        int x = hero.getX();
+        int y = hero.getY();
+        if(hero.getNumberOfArrows() == 0) {
+            return;
+        }
+        switch (map.getHero().getDirection()) {
+            case 'E' -> {
+                if(objectsMap[x][y+1] instanceof Pit) {
+                    hero.setNumberOfArrows(hero.getNumberOfArrows()-1);
+                }
+            }
+            case 'W' -> {
+                if(objectsMap[x][y-1] instanceof Pit) {
+                    hero.setNumberOfArrows(hero.getNumberOfArrows()-1);
+                }
+            }
+            case 'N' -> {
+                if(objectsMap[x-1][y] instanceof Pit) {
+                    hero.setNumberOfArrows(hero.getNumberOfArrows()-1);
+                }
+            }
+            case 'S' -> {
+                if(objectsMap[x+1][y] instanceof Pit) {
+                    hero.setNumberOfArrows(hero.getNumberOfArrows()-1);
+                }
+            }
+        }
+    }
+
     public boolean pickUpGold(Map map) {
         GameObject[][] objectsMap = map.getMap();
         Hero hero = map.getHero();
@@ -94,7 +187,10 @@ public class HeroAction {
         Hero oldHero = map.getHero();
         int x = oldHero.getX();
         int y = oldHero.getY();
+        map.setStepCount(map.getStepCount()+1);
         pickUpGold(map);
+        moveOnPit(map);
+        moveOnWumpus(map);
         switch (map.getHero().getDirection()) {
             case 'E' -> {
                 objectsMap[x][y] = new GameObject();
@@ -157,5 +253,6 @@ public class HeroAction {
                 }
             }
         }
+        isWonHero(map);
     }
 }

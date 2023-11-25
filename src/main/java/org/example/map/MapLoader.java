@@ -19,6 +19,11 @@ public class MapLoader {
             fR = new FileReader(mapName+ ".txt");
             bR = new BufferedReader(fR);
             int size = Integer.parseInt(bR.readLine());
+            boolean hasGold = Boolean.parseBoolean(bR.readLine());
+            int arrows = Integer.parseInt(bR.readLine());
+            int steps = Integer.parseInt(bR.readLine());
+            int heroX = Integer.parseInt(bR.readLine());
+            int heroY = Integer.parseInt(bR.readLine());
             gameObjects = new GameObject[size][size];
             while ((currLine = bR.readLine()) != null) {
                 StringTokenizer sT = new StringTokenizer(currLine,",");
@@ -44,6 +49,11 @@ public class MapLoader {
             }
             map = new Map(size);
             map.setMap(gameObjects);
+            map.getHero().setHasGold(hasGold);
+            map.getHero().setNumberOfArrows(arrows);
+            map.setStepCount(steps);
+            map.setStartingHeroX(heroX);
+            map.setStartingHeroY(heroY);
         } catch (IOException e) {
             throw new RuntimeException(e);
         } finally {

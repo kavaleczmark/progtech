@@ -54,6 +54,7 @@ public class MapEditor {
         System.out.println("Add meg a betöltendő pálya nevét!");
         map = mapLoader.loadMap(userInput.getUserInputAsString());
         map.printMap();
+        choosePosition();
     }
 
     public void createMapMenu() {
@@ -95,7 +96,6 @@ public class MapEditor {
         fillObjects();
 
     }
-
     private void continueGame() {
         System.out.println("1. FOLYTATÁS");
         System.out.println("2. VISSZA A MENÜBE");
@@ -106,6 +106,9 @@ public class MapEditor {
     }
 
     private void fillObjects() {
+        for (int i = 0; i < 2; i++) {
+            System.out.println();
+        }
         System.out.println("-------VÁLASSZON EGY ELEMET!-------");
         System.out.println(
                 "1. GOLD \n" +

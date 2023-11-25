@@ -20,6 +20,11 @@ public class GameSaver {
         try {
             FileWriter myWriter = new FileWriter(game.getName()+".txt");
             myWriter.write(mapSize+"\n");
+            myWriter.write(map.getHero().isHasGold() +"\n");
+            myWriter.write(map.getHero().getNumberOfArrows() +"\n");
+            myWriter.write(map.getStepCount() +"\n");
+            myWriter.write(map.getStartingHeroX()+ "\n");
+            myWriter.write(map.getStartingHeroY()+ "\n");
             for (int i = 0; i < mapSize; i++) {
                 for (int j = 0; j < mapSize; j++) {
                     myWriter.write(map.getMap()[i][j].getSaveAbleName());
