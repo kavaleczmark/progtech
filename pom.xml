@@ -110,13 +110,6 @@
                         </configuration>
                     </execution>
                 </executions>
-<!--                <configuration>-->
-<!--                    <excludes>-->
-<!--                        <exclude>hu/nye/progtech/sudoku/model/*</exclude>-->
-<!--                        <exclude>hu/nye/progtech/sudoku/Main.*</exclude>-->
-<!--                        <exclude>hu/nye/progtech/sudoku/ui/PrintWrapper.*</exclude>-->
-<!--                    </excludes>-->
-<!--                </configuration>-->
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
