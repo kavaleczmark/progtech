@@ -75,7 +75,7 @@ public class Game{
     }
 
     public void giveUp() {
-        System.out.println("A játéknak vége, feladtad!");
+        System.out.println("\uD83D\uDEAB A játéknak vége, feladtad! \uD83D\uDEAB");
         System.out.println("Vissza a menübe!");
         mainMenu.startMainMenu();
     }
@@ -124,6 +124,7 @@ public class Game{
     public void movementHero() {
         if(!map.getHero().isWon()) {
             System.out.println("-------Kontroller-------");
+            System.out.println("       \uD83C\uDFC1 "+((char)(map.getStartingHeroY()+'A'))+"-"+(map.getStartingHeroX()+1)+" \uD83C\uDFC1");
             System.out.println("        \uD83C\uDFF9 " + map.getHero().getNumberOfArrows() + " \uD83C\uDFF9");
             System.out.println("        \uD83D\uDC7E " + map.counterOfObject(ObjectTypes.WUMPUS) + " \uD83D\uDC7E");
             if (map.getHero().isHasGold()) {
@@ -131,8 +132,7 @@ public class Game{
             } else if (!map.getHero().isHasGold()) {
                 System.out.println("      \uD83E\uDD47 NINCS \uD83E\uDD47");
             }
-            System.out.println("        "+((char)(map.getStartingHeroY()+'A'))+"-"+(map.getStartingHeroX()+1));
-            System.out.println(map.getStepCount());
+            System.out.println("        \uD83D\uDC63 " + map.getStepCount() + " \uD83D\uDC63");
             System.out.println("JOBBRA FORDUL - R");
             System.out.println("BALRA FORDUL - L");
             System.out.println("ELŐRE LÉP - W");
@@ -142,7 +142,8 @@ public class Game{
 
         }
         else {
-            System.out.println("GYŐZTÉL! LÉPÉSEID SZÁMA: "+ map.getStepCount());
+            System.out.println("\uD83C\uDF89\uD83C\uDF89 GYŐZTÉL! \uD83C\uDF89\uD83C\uDF89 \n " +
+                    "LÉPÉSEID SZÁMA: "+ map.getStepCount());
             mainMenu.startMainMenu();
         }
     }

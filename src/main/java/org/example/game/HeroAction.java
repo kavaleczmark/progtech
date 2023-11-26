@@ -29,7 +29,7 @@ public class HeroAction {
                     objectsMap[x][y] = new GameObject();
                     hero.setDead();
                     map.printMap();
-                    System.out.println("Játéknak vége, megölt a Wumpus!");
+                    System.out.println("\uD83D\uDEAB Játéknak vége, megölt a Wumpus! \uD83D\uDEAB");
                     System.exit(0);
                 }
             }
@@ -39,7 +39,7 @@ public class HeroAction {
                     objectsMap[x][y] = new GameObject();
                     hero.setDead();
                     map.printMap();
-                    System.out.println("Játéknak vége, megölt a Wumpus!");
+                    System.out.println("\uD83D\uDEAB Játéknak vége, megölt a Wumpus! \uD83D\uDEAB");
                     System.exit(0);
                 }
             }
@@ -49,7 +49,7 @@ public class HeroAction {
                     objectsMap[x][y] = new GameObject();
                     hero.setDead();
                     map.printMap();
-                    System.out.println("Játéknak vége, megölt a Wumpus!");
+                    System.out.println("\uD83D\uDEAB Játéknak vége, megölt a Wumpus! \uD83D\uDEAB");
                     System.exit(0);
                 }
             }
@@ -59,7 +59,7 @@ public class HeroAction {
                     objectsMap[x][y] = new GameObject();
                     hero.setDead();
                     map.printMap();
-                    System.out.println("Játéknak vége, megölt a Wumpus!");
+                    System.out.println("\uD83D\uDEAB Játéknak vége, megölt a Wumpus! \uD83D\uDEAB");
                     System.exit(0);
                 }
             }
