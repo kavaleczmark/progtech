@@ -103,7 +103,11 @@
                 <configuration>
                     <excludes>
                         <exclude>org/example/objects/*</exclude>
-                        <exclude>org/example/Main.java</exclude>
+                        <exclude>org/example/Main.class</exclude>
+                        <exclude>org/example/game/GameLoader.class</exclude>
+                        <exclude>org/example/game/GameSaver.class</exclude>
+                        <exclude>org/example/map/MapLoader.class</exclude>
+                        <exclude>org/example/map/MapSaver.class</exclude>
                     </excludes>
                 </configuration>
                 <executions>
@@ -174,11 +178,6 @@
                         <version>5.10.0</version>
                     </dependency>
                 </dependencies>
-                <configuration>
-                    <includes>
-                        <include>**/UnitTests.java</include>
-                    </includes>
-                </configuration>
             </plugin>
         </plugins>
     </build>

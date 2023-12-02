@@ -1,23 +1,16 @@
 package mapTests;
 
-import org.example.game.Game;
 import org.example.map.Map;
-import org.example.map.MapEditor;
-import org.example.map.MapValidator;
-import org.example.game.GameService;
-import org.example.menu.MainMenu;
 import org.example.objects.*;
-import org.example.service.UserInput;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
-import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.*;
+
 @ExtendWith(MockitoExtension.class)
-public class MapUT {
+public class MapTest {
 
     @Mock
     private Map map;
@@ -110,4 +103,54 @@ public class MapUT {
         assertEquals(1, pitCount);
 
     }
+    @Test
+    public void testGetGold() {
+        Gold gold = new Gold(2,2);
+        map.getMap()[2][2] = gold;
+
+        Gold result = map.getGold();
+
+        assertEquals(gold, result);
+    }
+    @Test
+    public void testGetSize() {
+        int expectedSize = 10;
+        Map map = new Map(expectedSize);
+
+        int result = map.getSize();
+
+        assertEquals(expectedSize, result);
+    }
+
+    @Test
+    public void testSetAndGetStartingHeroX() {
+        int expectedStartingHeroX = 2;
+
+        map.setStartingHeroX(expectedStartingHeroX);
+        int result = map.getStartingHeroX();
+
+        assertEquals(expectedStartingHeroX, result);
+    }
+
+    @Test
+    public void testSetAndGetStartingHeroY() {
+        int expectedStartingHeroY = 3;
+
+        map.setStartingHeroY(expectedStartingHeroY);
+        int result = map.getStartingHeroY();
+
+        assertEquals(expectedStartingHeroY, result);
+    }
+
+    @Test
+    public void testSetAndGetMap() {
+        GameObject[][] expectedMap = new GameObject[][]{{new Wall(), new Wall()}, {new Gold(1,1), new GameObject()}};
+
+        map.setMap(expectedMap);
+        GameObject[][] result = map.getMap();
+
+        assertArrayEquals(expectedMap, result);
+    }
+
+
 }
