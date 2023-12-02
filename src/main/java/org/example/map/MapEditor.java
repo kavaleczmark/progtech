@@ -65,6 +65,7 @@ public class MapEditor {
     }
 
     public void loadMapFromDB() {
+        dataBase.fetchMapNames();
         System.out.println("Add meg a betöltendő pálya nevét!");
         map = dataBase.loadMap(userInput.getUserInputAsString());
         map.printMap();

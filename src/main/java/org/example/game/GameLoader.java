@@ -11,34 +11,34 @@ import java.io.IOException;
 public class GameLoader {
     public Map loadMap(String mapName) {
         GameObject[][] gameObjects = null;
-        int i=0, j=0;
-        FileReader fR = null;
-        BufferedReader bR = null;
+        int i = 0, j = 0;
+        FileReader fileReader = null;
+        BufferedReader bufferedReader = null;
         Map map = null;
         try {
-            String currLine;
-            fR = new FileReader(mapName+ ".txt");
-            bR = new BufferedReader(fR);
-            int size = Integer.parseInt(bR.readLine());
-            boolean hasGold = Boolean.parseBoolean(bR.readLine());
-            int arrows = Integer.parseInt(bR.readLine());
-            int steps = Integer.parseInt(bR.readLine());
-            int heroX = Integer.parseInt(bR.readLine());
-            int heroY = Integer.parseInt(bR.readLine());
+            fileReader = new FileReader(mapName + ".txt");
+            bufferedReader = new BufferedReader(fileReader);
+            int size = Integer.parseInt(bufferedReader.readLine());
+            boolean hasGold = Boolean.parseBoolean(bufferedReader.readLine());
+            int arrows = Integer.parseInt(bufferedReader.readLine());
+            int steps = Integer.parseInt(bufferedReader.readLine());
+            int heroX = Integer.parseInt(bufferedReader.readLine());
+            int heroY = Integer.parseInt(bufferedReader.readLine());
             gameObjects = new GameObject[size][size];
-            while ((currLine = bR.readLine()) != null) {
-                StringTokenizer sT = new StringTokenizer(currLine,",");
-                while(sT.hasMoreTokens()) {
-                    switch (sT.nextToken()) {
+            String currLine;
+            while ((currLine = bufferedReader.readLine()) != null) {
+                StringTokenizer stringTokenizer = new StringTokenizer(currLine, ",");
+                while (stringTokenizer.hasMoreTokens()) {
+                    switch (stringTokenizer.nextToken()) {
                         case "EMPTY" -> gameObjects[i][j] = new GameObject();
-                        case "GOLD" -> gameObjects[i][j] = new Gold(i,j);
-                        case "HERO|E" -> gameObjects[i][j] = new Hero(i,j,'E');
-                        case "HERO|S" -> gameObjects[i][j] = new Hero(i,j,'S');
-                        case "HERO|N" -> gameObjects[i][j] = new Hero(i,j,'N');
-                        case "HERO|W" -> gameObjects[i][j] = new Hero(i,j,'W');
+                        case "GOLD" -> gameObjects[i][j] = new Gold(i, j);
+                        case "HERO|E" -> gameObjects[i][j] = new Hero(i, j, 'E');
+                        case "HERO|S" -> gameObjects[i][j] = new Hero(i, j, 'S');
+                        case "HERO|N" -> gameObjects[i][j] = new Hero(i, j, 'N');
+                        case "HERO|W" -> gameObjects[i][j] = new Hero(i, j, 'W');
                         case "PIT" -> gameObjects[i][j] = new Pit();
                         case "WALL" -> gameObjects[i][j] = new Wall();
-                        case "WUMPUS" -> gameObjects[i][j] = new Wumpus(i,j);
+                        case "WUMPUS" -> gameObjects[i][j] = new Wumpus(i, j);
                     }
                     if (j < size - 1) {
                         j++;
@@ -59,8 +59,12 @@ public class GameLoader {
             throw new RuntimeException(e);
         } finally {
             try {
-                if (bR != null) bR.close();
-                if (fR != null) fR.close();
+                if (bufferedReader != null) {
+                    bufferedReader.close();
+                }
+                if (fileReader != null) {
+                    fileReader.close();
+                }
             } catch (IOException ex) {
                 ex.printStackTrace();
             }
