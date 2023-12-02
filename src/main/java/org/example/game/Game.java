@@ -1,5 +1,6 @@
 package org.example.game;
 
+import org.example.database.DataBase;
 import org.example.map.Map;
 import org.example.objects.ObjectTypes;
 import org.example.service.UserInput;
@@ -13,12 +14,14 @@ public class Game{
     private GameService gameService;
     private Map map;
     private HeroAction heroAction;
+    private DataBase dataBase;
 
     public Game() {
         this.userInput = new UserInput();
-        this.mainMenu = new MainMenu(this, userInput, gameService);
-        this.gameService = new GameService(this, userInput);
         this.heroAction = new HeroAction();
+        this.dataBase = new DataBase();
+        this.gameService = new GameService(this, userInput);
+        this.mainMenu = new MainMenu(this, userInput, gameService, dataBase);
     }
 
     public void setMap(Map map) {
@@ -144,6 +147,7 @@ public class Game{
         else {
             System.out.println("\uD83C\uDF89\uD83C\uDF89 GYŐZTÉL! \uD83C\uDF89\uD83C\uDF89 \n " +
                     "LÉPÉSEID SZÁMA: "+ map.getStepCount());
+            dataBase.updatePlayers(getName());
             mainMenu.startMainMenu();
         }
     }
