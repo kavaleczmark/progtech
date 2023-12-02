@@ -10,6 +10,7 @@ public class Map {
     private int startingHeroX = 0;
     private int startingHeroY = 0;
     private int stepCount = 0;
+    private Hero hero;
 
     public GameObject[][] getMap() {
         return map;
@@ -24,6 +25,9 @@ public class Map {
             }
         }
         return null;
+    }
+    public void setHero(Hero hero) {
+        this.hero = hero;
     }
 
     public int getStepCount() {

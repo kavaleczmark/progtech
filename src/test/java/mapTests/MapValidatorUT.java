@@ -1,52 +1,17 @@
-import org.example.game.Game;
+package mapTests;
+
 import org.example.map.Map;
-import org.example.map.MapEditor;
 import org.example.map.MapValidator;
-import org.example.game.GameService;
-import org.example.menu.MainMenu;
 import org.example.objects.*;
-import org.example.service.UserInput;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.Mock;
-import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
+
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
-public class UnitTests {
-
-    @Mock
-    private UserInput userInput;
-    @Mock
-    private MapEditor mapEditor;
-    @Mock
-    private MainMenu mainMenu;
-    @Mock
-    private Game game;
-    @Mock
-    private GameService gameMenu;
-    private Map map;
-
-    @Test
-    public void shouldReturnCorrectCountOfObject() {
-        map = new Map(6);
-        int actual = map.counterOfObject(ObjectTypes.WALL); //6-os map méretnél 20 fal van-e?
-        assertEquals(20, actual);
-    }
-
-    @Test
-    public void test() {
-        mapEditor.mapEditor();
-        verify(mapEditor, times(1)).mapEditor();
-    }
-
-    @Test
-    public void test2() {
-        mapEditor.createMapMenu();
-        verify(mapEditor, times(1)).createMapMenu();
-    }
+public class MapValidatorUT {
 
     @Test
     public void shouldGetCorrectNumberOfHeroes() {
@@ -73,13 +38,6 @@ public class UnitTests {
         int expected = 2;
         int actual = mapValidator.getWumpusCount();
         assertEquals(expected, actual);
-    }
-
-    @Test
-    public void testGameCreation() {
-        assertNotNull(game);
-        assertNotNull(userInput);
-        assertNotNull(mainMenu);
     }
 
     @Test
@@ -119,21 +77,6 @@ public class UnitTests {
         mapValidator.isActionPossible(ObjectTypes.HERO, map);
 
         assertTrue(mapValidator.isActionPossible(ObjectTypes.HERO, map));
-    }
-
-    @Test
-    public void testGetUserName() {
-        when(userInput.getUserInputAsString()).thenReturn("John");
-        game.startGame();
-        game.getUserName();
-        userInput.getUserInputAsString();
-        verify(userInput).getUserInputAsString();
-    }
-
-    @Test
-    void testCallGame() {
-        game.game();
-        verify(game, times(1)).game();
     }
 
 }
