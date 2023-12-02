@@ -14,11 +14,11 @@ public class Map {
     public GameObject[][] getMap() {
         return map;
     }
-    public Hero getHero (){
+
+    public Hero getHero() {
         for (int i = 0; i < size; i++) {
             for (int j = 0; j < size; j++) {
-                if(map[i][j] instanceof Hero)
-                {
+                if (map[i][j] instanceof Hero) {
                     return (Hero) map[i][j];
                 }
             }
@@ -50,11 +50,10 @@ public class Map {
         this.startingHeroY = startingHeroY;
     }
 
-    public Gold getGold (){
+    public Gold getGold() {
         for (int i = 0; i < size; i++) {
             for (int j = 0; j < size; j++) {
-                if(map[i][j] instanceof Gold)
-                {
+                if (map[i][j] instanceof Gold) {
                     return (Gold) map[i][j];
                 }
             }

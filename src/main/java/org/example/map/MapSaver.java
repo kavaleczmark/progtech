@@ -28,11 +28,11 @@ public class MapSaver {
             for (int i = 0; i < mapSize; i++) {
                 for (int j = 0; j < mapSize; j++) {
                     myWriter.write(map.getMap()[i][j].getSaveAbleName());
-                    if(j!=mapSize-1){
+                    if (j != mapSize - 1) {
                         myWriter.write(",");
                     }
                 }
-                if(i!=mapSize-1) {
+                if (i != mapSize - 1) {
                     myWriter.write("\n");
                 }
             }

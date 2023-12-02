@@ -1,5 +1,6 @@
 package org.example.map;
 
+import org.example.database.DataBase;
 import org.example.game.Game;
 import org.example.menu.MainMenu;
 import org.example.service.UserInput;
@@ -11,13 +12,16 @@ public class MapEditor {
     private Game game;
     private MainMenu mainMenu;
     private MapValidator mapValidator;
+
+    private DataBase dataBase;
     private int x, y;
 
-    public MapEditor(Game game, UserInput userInput, MainMenu mainMenu) {
+    public MapEditor(Game game, UserInput userInput, MainMenu mainMenu, DataBase dataBase) {
         this.userInput = userInput;
         this.game = game;
         this.mainMenu = mainMenu;
         this.mapValidator = new MapValidator();
+        this.dataBase = dataBase;
     }
 
     public void mapEditor() {
@@ -32,8 +36,8 @@ public class MapEditor {
     private void handleMapEditorInput(int input) {
         switch (input) {
             case 1 -> createMapMenu();
-            case 2 -> loadMap();
-            case 3 -> saveMap();
+            case 2 -> loadMapMenu();
+            case 3 -> saveMapMenu();
             case 4 -> mainMenu.startMainMenu();
             default -> {
                 System.out.println("#cominsoon or #wrongcommand");
@@ -42,19 +46,68 @@ public class MapEditor {
         }
     }
 
-    private void saveMap() {
-        MapSaver mapSaver = new MapSaver();
-        System.out.println("Add meg a pálya nevét!");
-        mapSaver.saveMap(map, userInput.getUserInputAsString());
-        mapEditor();
+    public void loadMapMenu() {
+        System.out.println("-------PÁLYA BETÖLTÉSE-------");
+        System.out.println("1. PÁLYA BETÖLTÉSE FÁJLBÓL");
+        System.out.println("2. PÁLYA BETÖLTÉSE ADATBÁZISBÓL");
+        handleMapLoaderInput(userInput.getUserInputAsInt());
     }
 
-    public void loadMap() {
+    public void handleMapLoaderInput(int input) {
+        switch (input) {
+            case 1 -> loadMapFromFile();
+            case 2 -> loadMapFromDB();
+            default -> {
+                System.out.println("#cominsoon or #wrongcommand");
+                mapEditor();
+            }
+        }
+    }
+
+    public void loadMapFromDB() {
+        System.out.println("Add meg a betöltendő pálya nevét!");
+        map = dataBase.loadMap(userInput.getUserInputAsString());
+        map.printMap();
+        choosePosition();
+    }
+
+    public void loadMapFromFile() {
         MapLoader mapLoader = new MapLoader();
         System.out.println("Add meg a betöltendő pálya nevét!");
         map = mapLoader.loadMap(userInput.getUserInputAsString());
         map.printMap();
         choosePosition();
+    }
+
+    public void saveMapMenu() {
+        System.out.println("-------PÁLYA MENTÉSE-------");
+        System.out.println("1. PÁLYA MENTÉSE FÁJLBA");
+        System.out.println("2. PÁLYA MENTÉSE ADATBÁZISBA");
+        handleMapSaverInput(userInput.getUserInputAsInt());
+    }
+
+    public void handleMapSaverInput(int input) {
+        switch (input) {
+            case 1 -> saveMapToFile();
+            case 2 -> saveMapToDB();
+            default -> {
+                System.out.println("#cominsoon or #wrongcommand");
+                mapEditor();
+            }
+        }
+    }
+
+    private void saveMapToDB() {
+        System.out.println("Add meg a pálya nevét!");
+        dataBase.saveMap(map, userInput.getUserInputAsString());
+        mapEditor();
+    }
+
+    private void saveMapToFile() {
+        MapSaver mapSaver = new MapSaver();
+        System.out.println("Add meg a pálya nevét!");
+        mapSaver.saveMap(map, userInput.getUserInputAsString());
+        mapEditor();
     }
 
     public void createMapMenu() {
@@ -96,6 +149,7 @@ public class MapEditor {
         fillObjects();
 
     }
+
     private void continueGame() {
         System.out.println("1. FOLYTATÁS");
         System.out.println("2. VISSZA A MENÜBE");
@@ -121,7 +175,7 @@ public class MapEditor {
         switch (userInput.getUserInputAsInt()) {
             case 1 -> {
                 if (mapValidator.isActionPossible(ObjectTypes.GOLD, map)) {
-                    map.getMap()[x][y] = new Gold(x,y);
+                    map.getMap()[x][y] = new Gold(x, y);
                     map.printMap();
                 } else {
                     map.printMap();
@@ -131,7 +185,7 @@ public class MapEditor {
             }
             case 2 -> {
                 if (mapValidator.isActionPossible(ObjectTypes.HERO, map)) {
-                    map.getMap()[x][y] = new Hero(x,y,'E');
+                    map.getMap()[x][y] = new Hero(x, y, 'E');
                     map.printMap();
                 } else {
                     map.printMap();
@@ -146,7 +200,7 @@ public class MapEditor {
             }
             case 4 -> {
                 if (mapValidator.isActionPossible(ObjectTypes.WUMPUS, map)) {
-                    map.getMap()[x][y] = new Wumpus(x,y);
+                    map.getMap()[x][y] = new Wumpus(x, y);
                     map.printMap();
                 } else {
                     System.out.println("Nem lehetséges ez a parancs validálás miatt!");

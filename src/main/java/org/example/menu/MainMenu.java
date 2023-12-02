@@ -18,8 +18,8 @@ public class MainMenu {
         this.game = game;
         this.userInput = userInput;
         this.gameMenu = gameMenu;
-        this.mapEditor = new MapEditor(game, userInput, this);
         this.dataBase = dataBase;
+        this.mapEditor = new MapEditor(game, userInput, this, dataBase);
     }
 
     public void startMainMenu() {

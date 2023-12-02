@@ -7,32 +7,33 @@ import java.io.IOException;
 
 public class GameSaver {
     private Game game;
+
     public GameSaver(Game game) {
         this.game = game;
     }
 
     public void saveGame(Map map) {
-        if(map == null) {
+        if (map == null) {
             System.out.println("Előbb hozz létre egy pályát");
             return;
         }
         int mapSize = map.getSize();
         try {
-            FileWriter myWriter = new FileWriter(game.getName()+".txt");
-            myWriter.write(mapSize+"\n");
-            myWriter.write(map.getHero().isHasGold() +"\n");
-            myWriter.write(map.getHero().getNumberOfArrows() +"\n");
-            myWriter.write(map.getStepCount() +"\n");
-            myWriter.write(map.getStartingHeroX()+ "\n");
-            myWriter.write(map.getStartingHeroY()+ "\n");
+            FileWriter myWriter = new FileWriter(game.getName() + ".txt");
+            myWriter.write(mapSize + "\n");
+            myWriter.write(map.getHero().isHasGold() + "\n");
+            myWriter.write(map.getHero().getNumberOfArrows() + "\n");
+            myWriter.write(map.getStepCount() + "\n");
+            myWriter.write(map.getStartingHeroX() + "\n");
+            myWriter.write(map.getStartingHeroY() + "\n");
             for (int i = 0; i < mapSize; i++) {
                 for (int j = 0; j < mapSize; j++) {
                     myWriter.write(map.getMap()[i][j].getSaveAbleName());
-                    if(j!=mapSize-1){
+                    if (j != mapSize - 1) {
                         myWriter.write(",");
                     }
                 }
-                if(i!=mapSize-1) {
+                if (i != mapSize - 1) {
                     myWriter.write("\n");
                 }
             }

@@ -17,5 +17,7 @@ public class UserInput {
         return scanner.nextInt();
     }
 
-    public char getUserInputAsChar() {return scanner.next().charAt(0);}
+    public char getUserInputAsChar() {
+        return scanner.next().charAt(0);
+    }
 }

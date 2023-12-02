@@ -9,7 +9,9 @@ import org.example.service.UserInput;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
+import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
+
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
@@ -30,40 +32,43 @@ public class UnitTests {
 
     @Test
     public void shouldGetInputFromUserAsString() {
-        when(userInput.getUserInputAsString()).thenReturn("test"); //mikor fut add vissza a test-et
-        String actual = userInput.getUserInputAsString();
-        assertEquals("test",actual);
+        UserInput userInput1 = Mockito.mock(UserInput.class);
+        when(userInput1.getUserInputAsString()).thenReturn("test"); //mikor fut add vissza a test-et
+        String actual = userInput1.getUserInputAsString();
+        assertEquals("test", actual);
     }
+
     @Test
     public void shouldGetInputFromUserAsInt() {
         when(userInput.getUserInputAsInt()).thenReturn(1); //mikor fut add vissza a test-et
         int actual = userInput.getUserInputAsInt();
-        assertEquals(1,actual);
+        assertEquals(1, actual);
     }
+
     @Test
     public void shouldGetInputFromUserAsChar() {
         when(userInput.getUserInputAsChar()).thenReturn('a'); //mikor fut add vissza a test-et
         char actual = userInput.getUserInputAsChar();
-        assertEquals('a',actual);
+        assertEquals('a', actual);
     }
 
     @Test
     public void shouldReturnCorrectCountOfObject() {
         map = new Map(6);
         int actual = map.counterOfObject(ObjectTypes.WALL); //6-os map méretnél 20 fal van-e?
-        assertEquals(20,actual);
+        assertEquals(20, actual);
     }
 
     @Test
     public void test() {
         mapEditor.mapEditor();
-        verify(mapEditor,times(1)).mapEditor();
+        verify(mapEditor, times(1)).mapEditor();
     }
 
     @Test
     public void test2() {
         mapEditor.createMapMenu();
-        verify(mapEditor,times(1)).createMapMenu();
+        verify(mapEditor, times(1)).createMapMenu();
     }
 
     @Test
@@ -104,33 +109,35 @@ public class UnitTests {
     public void testIsActionPossible_Wumpus() {
         Map map = new Map(9);
         MapValidator mapValidator = new MapValidator();
-        map.getMap()[0][1] = new Wumpus(0,1);
-        map.getMap()[0][2] = new Wumpus(1,2);
-        map.getMap()[0][3] = new Wumpus(4,3);
+        map.getMap()[0][1] = new Wumpus(0, 1);
+        map.getMap()[0][2] = new Wumpus(1, 2);
+        map.getMap()[0][3] = new Wumpus(4, 3);
 
         mapValidator.isActionPossible(ObjectTypes.WUMPUS, map);
 
         assertTrue(mapValidator.isActionPossible(ObjectTypes.WUMPUS, map));
     }
+
     @Test
     public void testIsActionPossible_Gold() {
         Map map = new Map(13);
         MapValidator mapValidator = new MapValidator();
-        map.getMap()[0][1] = new Gold(0,1);
-        map.getMap()[1][2] = new Gold(1,2);
-        map.getMap()[4][3] = new Gold(4,3);
+        map.getMap()[0][1] = new Gold(0, 1);
+        map.getMap()[1][2] = new Gold(1, 2);
+        map.getMap()[4][3] = new Gold(4, 3);
 
         mapValidator.isActionPossible(ObjectTypes.GOLD, map);
 
         assertTrue(mapValidator.isActionPossible(ObjectTypes.GOLD, map));
     }
+
     @Test
     public void testIsActionPossible_Hero() {
         Map map = new Map(6);
         MapValidator mapValidator = new MapValidator();
-        map.getMap()[2][1] = new Hero(0,1,'E');
-        map.getMap()[1][4] = new Hero(1,2,'E');
-        map.getMap()[3][3] = new Hero(4,3,'E');
+        map.getMap()[2][1] = new Hero(0, 1, 'E');
+        map.getMap()[1][4] = new Hero(1, 2, 'E');
+        map.getMap()[3][3] = new Hero(4, 3, 'E');
 
         mapValidator.isActionPossible(ObjectTypes.HERO, map);
 

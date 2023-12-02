@@ -6,7 +6,7 @@ import org.example.objects.ObjectTypes;
 import org.example.service.UserInput;
 import org.example.menu.MainMenu;
 
-public class Game{
+public class Game {
 
     private UserInput userInput;
     private String userName;
@@ -20,7 +20,7 @@ public class Game{
         this.userInput = new UserInput();
         this.heroAction = new HeroAction();
         this.dataBase = new DataBase();
-        this.gameService = new GameService(this, userInput);
+        this.gameService = new GameService(this, userInput, dataBase);
         this.mainMenu = new MainMenu(this, userInput, gameService, dataBase);
     }
 
@@ -58,6 +58,7 @@ public class Game{
     private void handleGameInput(int input) {
         switch (input) {
             case 1 -> gameService.loadLevelForGame();
+            case 2 -> gameService.loadLevelFromDB();
             case 3 -> mainMenu.startMainMenu();
             default -> {
                 System.out.println("#comingsoon or #wrongcommand");
@@ -124,10 +125,11 @@ public class Game{
             }
         }
     }
+
     public void movementHero() {
-        if(!map.getHero().isWon()) {
+        if (!map.getHero().isWon()) {
             System.out.println("-------Kontroller-------");
-            System.out.println("       \uD83C\uDFC1 "+((char)(map.getStartingHeroY()+'A'))+"-"+(map.getStartingHeroX()+1)+" \uD83C\uDFC1");
+            System.out.println("       \uD83C\uDFC1 " + ((char) (map.getStartingHeroY() + 'A')) + "-" + (map.getStartingHeroX() + 1) + " \uD83C\uDFC1");
             System.out.println("        \uD83C\uDFF9 " + map.getHero().getNumberOfArrows() + " \uD83C\uDFF9");
             System.out.println("        \uD83D\uDC7E " + map.counterOfObject(ObjectTypes.WUMPUS) + " \uD83D\uDC7E");
             if (map.getHero().isHasGold()) {
@@ -143,10 +145,9 @@ public class Game{
             System.out.println("VISSZA - X");
             handleMovementInput(userInput.getUserInputAsChar());
 
-        }
-        else {
+        } else {
             System.out.println("\uD83C\uDF89\uD83C\uDF89 GYŐZTÉL! \uD83C\uDF89\uD83C\uDF89 \n " +
-                    "LÉPÉSEID SZÁMA: "+ map.getStepCount());
+                    "LÉPÉSEID SZÁMA: " + map.getStepCount());
             dataBase.updatePlayers(getName());
             mainMenu.startMainMenu();
         }

@@ -47,10 +47,10 @@ public class Hero extends GameObject {
 
     @Override
     public String getName() {
-        if(isDead){
+        if (isDead) {
             return "DEAD";
         }
-        return "HERO|"+getDirection();
+        return "HERO|" + getDirection();
     }
 
     public ObjectTypes getType() {

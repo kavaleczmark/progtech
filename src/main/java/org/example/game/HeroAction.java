@@ -9,7 +9,7 @@ public class HeroAction {
         Hero hero = map.getHero();
         int x = hero.getX();
         int y = hero.getY();
-        if(map.getStartingHeroX() == x && map.getStartingHeroY() ==y && hero.isHasGold()){
+        if (map.getStartingHeroX() == x && map.getStartingHeroY() == y && hero.isHasGold()) {
             hero.setWon(true);
             return true;
         }
@@ -24,8 +24,8 @@ public class HeroAction {
         int y = hero.getY();
         switch (map.getHero().getDirection()) {
             case 'E' -> {
-                if(objectsMap[x][y+1] instanceof Wumpus) {
-                    objectsMap[x][y+1] = hero;
+                if (objectsMap[x][y + 1] instanceof Wumpus) {
+                    objectsMap[x][y + 1] = hero;
                     objectsMap[x][y] = new GameObject();
                     hero.setDead();
                     map.printMap();
@@ -34,8 +34,8 @@ public class HeroAction {
                 }
             }
             case 'W' -> {
-                if(objectsMap[x][y-1] instanceof Wumpus) {
-                    objectsMap[x][y-1] = hero;
+                if (objectsMap[x][y - 1] instanceof Wumpus) {
+                    objectsMap[x][y - 1] = hero;
                     objectsMap[x][y] = new GameObject();
                     hero.setDead();
                     map.printMap();
@@ -44,8 +44,8 @@ public class HeroAction {
                 }
             }
             case 'N' -> {
-                if(objectsMap[x-1][y] instanceof Wumpus) {
-                    objectsMap[x-1][y] = hero;
+                if (objectsMap[x - 1][y] instanceof Wumpus) {
+                    objectsMap[x - 1][y] = hero;
                     objectsMap[x][y] = new GameObject();
                     hero.setDead();
                     map.printMap();
@@ -54,8 +54,8 @@ public class HeroAction {
                 }
             }
             case 'S' -> {
-                if(objectsMap[x+1][y] instanceof Wumpus) {
-                    objectsMap[x+1][y] = hero;
+                if (objectsMap[x + 1][y] instanceof Wumpus) {
+                    objectsMap[x + 1][y] = hero;
                     objectsMap[x][y] = new GameObject();
                     hero.setDead();
                     map.printMap();
@@ -65,33 +65,34 @@ public class HeroAction {
             }
         }
     }
+
     public void moveOnPit(Map map) {
         GameObject[][] objectsMap = map.getMap();
         Hero hero = map.getHero();
         int x = hero.getX();
         int y = hero.getY();
-        if(hero.getNumberOfArrows() == 0) {
+        if (hero.getNumberOfArrows() == 0) {
             return;
         }
         switch (map.getHero().getDirection()) {
             case 'E' -> {
-                if(objectsMap[x][y+1] instanceof Pit) {
-                    hero.setNumberOfArrows(hero.getNumberOfArrows()-1);
+                if (objectsMap[x][y + 1] instanceof Pit) {
+                    hero.setNumberOfArrows(hero.getNumberOfArrows() - 1);
                 }
             }
             case 'W' -> {
-                if(objectsMap[x][y-1] instanceof Pit) {
-                    hero.setNumberOfArrows(hero.getNumberOfArrows()-1);
+                if (objectsMap[x][y - 1] instanceof Pit) {
+                    hero.setNumberOfArrows(hero.getNumberOfArrows() - 1);
                 }
             }
             case 'N' -> {
-                if(objectsMap[x-1][y] instanceof Pit) {
-                    hero.setNumberOfArrows(hero.getNumberOfArrows()-1);
+                if (objectsMap[x - 1][y] instanceof Pit) {
+                    hero.setNumberOfArrows(hero.getNumberOfArrows() - 1);
                 }
             }
             case 'S' -> {
-                if(objectsMap[x+1][y] instanceof Pit) {
-                    hero.setNumberOfArrows(hero.getNumberOfArrows()-1);
+                if (objectsMap[x + 1][y] instanceof Pit) {
+                    hero.setNumberOfArrows(hero.getNumberOfArrows() - 1);
                 }
             }
         }
@@ -138,20 +139,18 @@ public class HeroAction {
     public void killWumpusWithArrows(Map map) {
         GameObject[][] objectsMap = map.getMap();
         Hero hero = map.getHero();
-        if(hero.getNumberOfArrows() == 0) {
+        if (hero.getNumberOfArrows() == 0) {
             System.out.println("Nincs több nyilad!");
             return;
         }
         int x = hero.getX();
         int y = hero.getY();
-        hero.setNumberOfArrows(hero.getNumberOfArrows()-1);
-        while(!(objectsMap[x][y] instanceof Wall) || !(objectsMap[x][y] instanceof Wumpus) ) {
-            if(objectsMap[x][y] instanceof Wall)
-            {
+        hero.setNumberOfArrows(hero.getNumberOfArrows() - 1);
+        while (!(objectsMap[x][y] instanceof Wall) || !(objectsMap[x][y] instanceof Wumpus)) {
+            if (objectsMap[x][y] instanceof Wall) {
                 break;
             }
-            if(objectsMap[x][y] instanceof Wumpus)
-            {
+            if (objectsMap[x][y] instanceof Wumpus) {
                 objectsMap[x][y] = new GameObject();
                 break;
             }
@@ -187,7 +186,7 @@ public class HeroAction {
         Hero oldHero = map.getHero();
         int x = oldHero.getX();
         int y = oldHero.getY();
-        map.setStepCount(map.getStepCount()+1);
+        map.setStepCount(map.getStepCount() + 1);
         pickUpGold(map);
         moveOnPit(map);
         moveOnWumpus(map);

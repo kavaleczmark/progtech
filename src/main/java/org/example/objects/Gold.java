@@ -3,7 +3,7 @@ package org.example.objects;
 public class Gold extends GameObject {
 
     public Gold(int x, int y) {
-        super(x,y);
+        super(x, y);
     }
 
     @Override
