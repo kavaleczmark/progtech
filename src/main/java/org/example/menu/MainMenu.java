@@ -30,7 +30,7 @@ public class MainMenu {
         System.out.println("4. KILÉPÉS");
         handleMainMenuInput(userInput.getUserInputAsInt());
     }
-    private void highScore() {
+    public void highScore() {
         System.out.println("-----HIGH SCORE-----");
         dataBase.fetchPlayers();
         System.out.println("VISSZA - X");

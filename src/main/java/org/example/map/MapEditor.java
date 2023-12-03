@@ -33,7 +33,7 @@ public class MapEditor {
         handleMapEditorInput(userInput.getUserInputAsInt());
     }
 
-    private void handleMapEditorInput(int input) {
+    public void handleMapEditorInput(int input) {
         switch (input) {
             case 1 -> createMapMenu();
             case 2 -> loadMapMenu();
@@ -98,13 +98,13 @@ public class MapEditor {
         }
     }
 
-    private void saveMapToDB() {
+    public void saveMapToDB() {
         System.out.println("Add meg a pálya nevét!");
         dataBase.saveMap(map, userInput.getUserInputAsString());
         mapEditor();
     }
 
-    private void saveMapToFile() {
+    public void saveMapToFile() {
         MapSaver mapSaver = new MapSaver();
         System.out.println("Add meg a pálya nevét!");
         mapSaver.saveMap(map, userInput.getUserInputAsString());
@@ -119,7 +119,7 @@ public class MapEditor {
         handleCreateMapMenuInput(userInput.getUserInputAsInt());
     }
 
-    private void handleCreateMapMenuInput(int input) {
+    public void handleCreateMapMenuInput(int input) {
         switch (input) {
             case 1 -> choosePosition();
             case 2 -> mapEditor();
@@ -130,13 +130,13 @@ public class MapEditor {
         }
     }
 
-    private void createMap() {
+    public void createMap() {
         System.out.println("Írja be a pálya méretét (NxN):");
         map = new Map(userInput.getUserInputAsInt());
         map.printMap();
     }
 
-    private void choosePosition() {
+    public void choosePosition() {
         int x, y;
         do {
             System.out.println("A külső fal nem szerkeszthető!");
@@ -151,7 +151,7 @@ public class MapEditor {
 
     }
 
-    private void continueGame() {
+    public void continueGame() {
         System.out.println("1. FOLYTATÁS");
         System.out.println("2. VISSZA A MENÜBE");
         switch (userInput.getUserInputAsInt()) {
@@ -160,7 +160,7 @@ public class MapEditor {
         }
     }
 
-    private void fillObjects() {
+    public void fillObjects() {
         for (int i = 0; i < 2; i++) {
             System.out.println();
         }

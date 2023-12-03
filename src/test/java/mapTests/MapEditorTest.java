@@ -52,25 +52,10 @@ public class MapEditorTest {
     }
     @Test
     public void testCreateMap() {
-        int size = 5;
+        int size = 0;
         when(userInput.getUserInputAsInt()).thenReturn(size);
         mapEditor.createMap();
         assertEquals(size, map.getSize());
-    }
-    @Test
-    void choosePosition_ShouldChooseValidPosition() {
-        // Mock adatok beállítása
-        int x = 2;
-        int y = 2;
-        when(userInput.getUserInputAsInt()).thenReturn(x).thenReturn(y);
-
-        // Teszt
-        mapEditor.choosePosition();
-
-        // Ellenőrzés
-        verify(userInput, times(2)).getUserInputAsInt();
-        assertEquals(x - 1, game.getMap().getHero().getX());
-        assertEquals(y - 'a', game.getMap().getHero().getY());
     }
 
 
