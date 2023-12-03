@@ -41,11 +41,12 @@ public class MapValidator {
 
     public int getPossibleWumpusCount() {
         int size = map.getSize();
-        if (size <= 8)
+        if (size <= 8) {
             return 1;
-        else if (size <= 14)
+        } else if (size <= 14) {
             return 2;
-        else
+        } else {
             return 3;
+        }
     }
 }

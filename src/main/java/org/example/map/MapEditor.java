@@ -14,7 +14,8 @@ public class MapEditor {
     private MapValidator mapValidator;
 
     private DataBase dataBase;
-    private int x, y;
+    private int x;
+    private int y;
 
     public MapEditor(Game game, UserInput userInput, MainMenu mainMenu, DataBase dataBase) {
         this.userInput = userInput;
@@ -137,7 +138,8 @@ public class MapEditor {
     }
 
     public void choosePosition() {
-        int x, y;
+        int x;
+        int y;
         do {
             System.out.println("A külső fal nem szerkeszthető!");
             System.out.println("Válassz oszlopot (pl. 'b'): ");

@@ -11,7 +11,8 @@ import java.io.IOException;
 public class GameLoader {
     public Map loadMap(String mapName) {
         GameObject[][] gameObjects = null;
-        int i = 0, j = 0;
+        int i = 0;
+        int j = 0;
         FileReader fileReader = null;
         BufferedReader bufferedReader = null;
         Map map = null;

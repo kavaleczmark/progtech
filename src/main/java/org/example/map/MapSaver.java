@@ -12,16 +12,16 @@ public class MapSaver {
     }
 
     public void saveMap(Map map, String mapName) {
-        if(map == null) {
+        if (map == null) {
             System.out.println("Előbb hozz létre egy pályát");
             return;
         }
         int mapSize = map.getSize();
         try {
-            FileWriter myWriter = new FileWriter(mapName+".txt");
-            myWriter.write(mapSize+"\n");
-            myWriter.write(false +"\n");
-            myWriter.write(map.counterOfObject(ObjectTypes.WUMPUS)+"\n");
+            FileWriter myWriter = new FileWriter(mapName + ".txt");
+            myWriter.write(mapSize + "\n");
+            myWriter.write(false + "\n");
+            myWriter.write(map.counterOfObject(ObjectTypes.WUMPUS) + "\n");
             myWriter.write(0 + "\n");
             myWriter.write(map.getHero().getX() + "\n");
             myWriter.write(map.getHero().getY() + "\n");

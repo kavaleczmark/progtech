@@ -14,7 +14,7 @@ public class MainMenu {
     private GameService gameMenu;
     private DataBase dataBase;
 
-    public MainMenu(Game game, UserInput userInput, GameService gameMenu,DataBase dataBase) {
+    public MainMenu(Game game, UserInput userInput, GameService gameMenu, DataBase dataBase) {
         this.game = game;
         this.userInput = userInput;
         this.gameMenu = gameMenu;
@@ -30,15 +30,15 @@ public class MainMenu {
         System.out.println("4. KILÉPÉS");
         handleMainMenuInput(userInput.getUserInputAsInt());
     }
+
     public void highScore() {
         System.out.println("-----HIGH SCORE-----");
         dataBase.fetchPlayers();
         System.out.println("VISSZA - X");
         char input = userInput.getUserInputAsChar();
-        if(input=='X' || input=='x') {
+        if (input == 'X' || input == 'x') {
             startMainMenu();
-        }
-        else {
+        } else {
             System.out.println("HELYTELEN PARANCS!");
             highScore();
         }
